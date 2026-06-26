@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refer a Patient | West Coast Allied Health</title>
+<meta name="description" content="Refer a patient to West Coast Allied Health. Fill in the form and we'll see your patient within one business day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#14323F;background:#FAF6F0;line-height:1.6;}
+  ::selection{background:#E7D8BF;}
+
+  .nav-links{display:flex;}
+  .nav-burger{display:none;}
+  @media(max-width:880px){.nav-links{display:none;}.nav-burger{display:flex;}}
+
+  .topbar-inner{display:flex;}
+  @media(max-width:620px){.topbar-inner{justify-content:center;}.topbar-loc{display:none;}}
+
+  .refer-grid{grid-template-columns:1.5fr 0.85fr;}
+  @media(max-width:900px){.refer-grid{grid-template-columns:1fr;}}
+
+  .field-row{grid-template-columns:1fr 1fr;}
+  @media(max-width:520px){.field-row{grid-template-columns:1fr;}}
+
+  input:focus,select:focus,textarea:focus{border-color:#0E5C84!important;box-shadow:0 0 0 3px rgba(14,92,132,.12)!important;outline:none;}
+  input::placeholder,textarea::placeholder{color:#A89E8D;}
+
+  #main-nav{background:rgba(255,255,255,0.72);box-shadow:0 4px 18px rgba(20,40,55,0.07);transition:box-shadow .25s ease,background .25s ease;}
+  #main-nav.scrolled{background:rgba(255,255,255,0.9);box-shadow:0 10px 30px rgba(20,40,55,0.12);}
+
+  #mobile-menu{display:none;}
+  #mobile-menu.open{display:flex;}
+
+  a.h-blue:hover{color:#0E5C84 !important;}
+  a.h-white:hover{color:#fff !important;}
+  a.h-book-nav:hover{background:#0B4A6B !important;transform:translateY(-1px);}
+  a.h-back:hover{color:#0E5C84 !important;}
+  a.h-pdf:hover{filter:brightness(1.05);transform:translateY(-1px);}
+  a.h-social:hover{background:rgba(255,255,255,.08) !important;}
+  button.h-submit:hover{background:#0B4A6B !important;transform:translateY(-1px);box-shadow:0 12px 24px rgba(14,92,132,.24) !important;}
+  button.h-reset:hover{background:#F3ECE0 !important;border-color:#0E5C84 !important;}
+</style>
+</head>
+<body>
+<div id="top" style="overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;">
+
+<!-- ============ TOP UTILITY BAR ============ -->
+<div style="background:#F0E8DA;border-bottom:1px solid #E6DCCD;">
+  <div class="topbar-inner" style="max-width:1180px;margin:0 auto;padding:8px 22px;align-items:center;justify-content:space-between;gap:16px;font-size:13px;color:#7A7164;">
+    <span class="topbar-loc" style="font-weight:500;">Exercise physiology across Perth &amp; surrounds</span>
+    <span style="display:flex;align-items:center;gap:8px;font-weight:500;"><a href="tel:" class="h-back" style="color:#5C5347;text-decoration:none;">(08) 0000 0000</a><span style="color:#C9BCA6;">·</span><span>Mon&ndash;Fri</span></span>
+  </div>
+</div>
+
+<!-- ============ FLOATING NAV ============ -->
+<div style="position:sticky;top:0;z-index:60;padding:14px 16px;">
+  <nav id="main-nav" style="max-width:1080px;margin:0 auto;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #EAE0CF;border-radius:16px;padding:clamp(11px,1.1vw,15px) clamp(12px,1.1vw,16px) clamp(11px,1.1vw,15px) clamp(18px,1.6vw,26px);display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+      <img src="assets/logo.png" alt="West Coast Allied Health" style="height:clamp(42px,3vw,52px);width:auto;display:block;" />
+    </a>
+    <div class="nav-links" style="align-items:center;gap:clamp(28px,2.4vw,40px);">
+      <a href="index.html#about" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">About</a>
+      <a href="index.html#services" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">Services</a>
+      <a href="refer.html" style="text-decoration:none;color:#0E5C84;font-weight:600;font-size:17px;">Refer a patient</a>
+      <a href="index.html#contact" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">Contact</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" class="nav-links h-book-nav" style="align-items:center;background:#0E5C84;color:#fff;padding:13px 26px;border-radius:11px;font-weight:600;font-size:16.5px;text-decoration:none;transition:background .2s ease,transform .15s ease;">Book now</a>
+      <button id="burger-btn" aria-label="Menu" style="flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;border:1px solid #E2D8C7;border-radius:11px;background:#fff;cursor:pointer;padding:0;display:none;" class="nav-burger">
+        <span style="display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;"></span>
+        <span style="display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;"></span>
+        <span style="display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-menu" style="max-width:1080px;margin:8px auto 0;background:#fff;border:1px solid #EAE0CF;border-radius:16px;box-shadow:0 12px 30px rgba(20,40,55,.1);padding:10px 16px 18px;flex-direction:column;">
+    <a href="index.html#about" class="mobile-link" style="text-decoration:none;color:#3D4A4F;font-weight:600;font-size:16px;padding:13px 6px;border-bottom:1px solid #F1EADD;display:block;">About</a>
+    <a href="index.html#services" class="mobile-link" style="text-decoration:none;color:#3D4A4F;font-weight:600;font-size:16px;padding:13px 6px;border-bottom:1px solid #F1EADD;display:block;">Services</a>
+    <a href="refer.html" class="mobile-link" style="text-decoration:none;color:#0E5C84;font-weight:700;font-size:16px;padding:13px 6px;border-bottom:1px solid #F1EADD;display:block;">Refer a patient</a>
+    <a href="index.html#contact" class="mobile-link" style="text-decoration:none;color:#3D4A4F;font-weight:600;font-size:16px;padding:13px 6px;display:block;">Contact</a>
+    <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" class="mobile-link" style="margin-top:12px;display:flex;justify-content:center;align-items:center;background:#0E5C84;color:#fff;padding:14px 20px;border-radius:11px;font-weight:600;font-size:16px;text-decoration:none;">Book now</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section style="background:#FAF6F0;">
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(30px,4.5vw,56px) 22px clamp(20px,3vw,32px);">
+    <a href="index.html" class="h-back" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:#857B6C;font-size:14px;font-weight:500;margin-bottom:22px;transition:color .15s ease;">&larr;&nbsp;Back to home</a>
+    <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#D8A23A;display:block;"></span>
+      <span style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;">For referring practitioners</span>
+    </div>
+    <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(34px,4.8vw,54px);line-height:1.08;letter-spacing:-0.015em;margin:0 0 18px;color:#14323F;max-width:740px;text-wrap:balance;">Refer a patient</h1>
+    <p style="font-size:clamp(16.5px,1.5vw,19px);line-height:1.65;color:#5C574E;margin:0;max-width:600px;text-wrap:pretty;">Send us a referral and we'll take it from here. Fill in the form below, or grab the PDF and email it across. Either way, we'll be in touch with your patient within one business day.</p>
+  </div>
+</section>
+
+<!-- ============ MAIN ============ -->
+<section style="background:#FAF6F0;flex:1;">
+  <div class="refer-grid" style="max-width:1180px;margin:0 auto;padding:clamp(20px,3vw,36px) 22px clamp(56px,8vw,96px);display:grid;gap:clamp(28px,4vw,48px);align-items:start;">
+
+    <!-- FORM CARD -->
+    <div style="background:#fff;border:1px solid #EAE0CF;border-radius:18px;padding:clamp(24px,3.5vw,40px);box-shadow:0 4px 20px rgba(20,40,55,.05);">
+      <div id="form-view">
+        <form id="referral-form">
+          <!-- Patient details -->
+          <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#14323F;padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid #EDE5D6;">Patient details</div>
+          <div class="field-row" style="display:grid;gap:16px;margin-bottom:18px;">
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Patient name <span style="color:#C0853A;">*</span></label><input name="patient_name" required placeholder="Full name" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Date of birth</label><input name="patient_dob" type="date" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+          </div>
+          <div class="field-row" style="display:grid;gap:16px;margin-bottom:30px;">
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Patient phone</label><input name="patient_phone" type="tel" placeholder="Mobile or home" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Patient email</label><input name="patient_email" type="email" placeholder="name@example.com" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+          </div>
+
+          <!-- Referral details -->
+          <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#14323F;padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid #EDE5D6;">Referral details</div>
+          <div class="field-row" style="display:grid;gap:16px;margin-bottom:18px;">
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Funding type <span style="color:#C0853A;">*</span></label>
+              <select name="referral_type" required style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;appearance:none;">
+                <option value="">Select one</option>
+                <option>WorkCover WA</option>
+                <option>Motor vehicle accident (CTP)</option>
+                <option>GP care plan (Medicare CDM)</option>
+                <option>DVA</option>
+                <option>NDIS</option>
+                <option>Private health / self-funded</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Claim / reference no.</label><input name="claim_number" placeholder="If you have one" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+          </div>
+          <div style="margin-bottom:30px;"><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Reason for referral <span style="color:#C0853A;">*</span></label><textarea name="reason" required rows="4" placeholder="Diagnosis, injury, goals, anything we should know" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;line-height:1.6;resize:vertical;transition:border-color .15s ease,box-shadow .15s ease;"></textarea></div>
+
+          <!-- Referrer details -->
+          <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#14323F;padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid #EDE5D6;">Your details</div>
+          <div class="field-row" style="display:grid;gap:16px;margin-bottom:18px;">
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Your name <span style="color:#C0853A;">*</span></label><input name="referrer_name" required placeholder="Referring practitioner" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Practice / clinic</label><input name="referrer_practice" placeholder="Where you're based" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+          </div>
+          <div class="field-row" style="display:grid;gap:16px;margin-bottom:30px;">
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Your email <span style="color:#C0853A;">*</span></label><input name="referrer_email" type="email" required placeholder="So we can update you" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+            <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Your phone</label><input name="referrer_phone" type="tel" placeholder="Optional" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
+          </div>
+
+          <button type="submit" class="h-submit" style="width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:#0E5C84;color:#fff;padding:16px 24px;border:none;border-radius:10px;font-family:inherit;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Send referral</button>
+          <p style="font-size:13px;color:#9A9183;margin:14px 0 0;text-align:center;text-wrap:pretty;">This opens your email app with everything filled in, so you can check it and hit send. Nothing leaves your device until you do.</p>
+        </form>
+      </div>
+
+      <div id="success-view" style="display:none;text-align:center;padding:clamp(20px,4vw,44px) 4px;">
+        <div style="width:60px;height:60px;border-radius:50%;background:#E8F2EC;border:1px solid #BFE0CD;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;"><span style="width:20px;height:11px;border:3px solid #2E8B57;border-top:none;border-right:none;transform:rotate(-45deg);margin-top:-4px;display:block;"></span></div>
+        <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:26px;color:#14323F;margin:0 0 12px;">Your email is ready to send</h2>
+        <p style="font-size:16px;line-height:1.65;color:#5C574E;margin:0 auto 8px;max-width:420px;text-wrap:pretty;">We've opened your email app with the referral filled in. Give it a quick check and press send, and we'll be in touch with your patient within one business day.</p>
+        <p style="font-size:14.5px;line-height:1.6;color:#857B6C;margin:0 auto 28px;max-width:420px;text-wrap:pretty;">Nothing happen? Email it straight to <a href="mailto:admin@westcoastah.com.au" style="color:#0E5C84;font-weight:600;text-decoration:none;">admin@westcoastah.com.au</a>.</p>
+        <button id="reset-btn" class="h-reset" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:#0E5C84;padding:12px 22px;border:1px solid #CDBFA6;border-radius:10px;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:background .2s ease,border-color .2s ease;">Send another referral</button>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="background:#0C2A3A;border-radius:16px;padding:26px 24px;">
+        <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#fff;margin:0 0 8px;">Prefer paper?</h3>
+        <p style="font-size:14.5px;line-height:1.6;color:#A9C4D2;margin:0 0 20px;text-wrap:pretty;">Download the form, fill it in, and email it to us whenever it suits.</p>
+        <a href="#" class="h-pdf" style="display:flex;align-items:center;justify-content:center;gap:9px;background:#D8A23A;color:#27200F;padding:13px 20px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:filter .2s ease,transform .15s ease;">Download referral form (PDF)</a>
+        <p style="font-size:13px;color:#7E9DAF;margin:14px 0 0;text-align:center;">Email to admin@westcoastah.com.au</p>
+      </div>
+
+      <div style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
+        <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 16px;">What we accept</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>WorkCover WA</div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>Motor vehicle accidents (CTP)</div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>GP care plans (Medicare CDM)</div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>DVA</div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>NDIS</div>
+          <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>Private health &amp; self-funded</div>
+        </div>
+      </div>
+
+      <div style="background:#F3EDE3;border:1px solid #EAE1D2;border-radius:16px;padding:26px 24px;">
+        <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 14px;">What happens next</h3>
+        <p style="font-size:14.5px;line-height:1.66;color:#6B6458;margin:0 0 12px;text-wrap:pretty;">We call your patient within one business day to book them in.</p>
+        <p style="font-size:14.5px;line-height:1.66;color:#6B6458;margin:0;text-wrap:pretty;">After the first session, you'll get a short report. And we'll keep you in the loop as things progress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:#0C2A3A;color:#fff;">
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(40px,5vw,60px) 22px clamp(26px,3vw,34px);">
+    <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;">
+      <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;color:#fff;">West Coast<span style="color:#2BA8E0;"> Allied Health</span></div>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;font-size:15px;">
+        <a href="index.html#about" class="h-white" style="text-decoration:none;color:#C6D8E3;transition:color .15s ease;">About</a>
+        <a href="index.html#services" class="h-white" style="text-decoration:none;color:#C6D8E3;transition:color .15s ease;">Services</a>
+        <a href="index.html#contact" class="h-white" style="text-decoration:none;color:#C6D8E3;transition:color .15s ease;">Contact</a>
+        <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" class="h-white" style="text-decoration:none;color:#C6D8E3;transition:color .15s ease;">Book now</a>
+      </div>
+    </div>
+    <div style="margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13.5px;color:#7E9DAF;">&copy; <span id="year"></span> West Coast Allied Health. All rights reserved.</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav scroll
+  const nav = document.getElementById('main-nav');
+  let raf;
+  window.addEventListener('scroll', () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      nav.classList.toggle('scrolled', window.scrollY > 12);
+    });
+  }, { passive: true });
+
+  // Mobile menu
+  const burger = document.getElementById('burger-btn');
+  const menu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Form submission → mailto
+  document.getElementById('referral-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const fd = new FormData(this);
+    const g = k => (fd.get(k) || '').toString().trim();
+    const lines = [
+      'PATIENT DETAILS',
+      'Name: ' + g('patient_name'),
+      'Date of birth: ' + g('patient_dob'),
+      'Phone: ' + g('patient_phone'),
+      'Email: ' + g('patient_email'),
+      '',
+      'REFERRAL DETAILS',
+      'Funding type: ' + g('referral_type'),
+      'Claim / reference no.: ' + g('claim_number'),
+      'Reason for referral: ' + g('reason'),
+      '',
+      'REFERRER DETAILS',
+      'Name: ' + g('referrer_name'),
+      'Practice / clinic: ' + g('referrer_practice'),
+      'Email: ' + g('referrer_email'),
+      'Phone: ' + g('referrer_phone'),
+    ];
+    const subject = 'Patient referral: ' + (g('patient_name') || 'new patient');
+    window.location.href = 'mailto:admin@westcoastah.com.au?subject=' +
+      encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('success-view').style.display = 'block';
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(_) {}
+  });
+
+  // Reset
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('referral-form').reset();
+    document.getElementById('success-view').style.display = 'none';
+    document.getElementById('form-view').style.display = 'block';
+  });
+</script>
+</body>
+</html>
