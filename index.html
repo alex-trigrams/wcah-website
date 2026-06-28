@@ -10,18 +10,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;scroll-padding-top:128px;-webkit-text-size-adjust:100%;}
-  body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#14323F;background:#FAF6F0;line-height:1.6;}
-  body.sidebar-open{overflow:hidden;}
+  html{scroll-behavior:smooth;scroll-padding-top:100px;-webkit-text-size-adjust:100%;}
+  body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#14323F;background:#FAF6F0;line-height:1.6;overflow-x:clip;}
   ::selection{background:#E7D8BF;}
 
-  .nav-links{display:flex;}
-  .nav-burger{display:none;}
-  @media(max-width:880px){.nav-links{display:none;}.nav-burger{display:flex;}}
+  /* ── HEADER ── */
+  #site-header{position:sticky;top:0;z-index:100;background:#fff;transition:box-shadow .3s ease;}
+  #site-header.scrolled{box-shadow:0 4px 28px rgba(20,40,55,.1);}
 
+  /* Topbar */
+  #topbar{background:#F0E8DA;border-bottom:1px solid #E6DCCD;overflow:hidden;max-height:38px;opacity:1;transition:max-height .35s ease,opacity .3s ease;}
+  #site-header.scrolled #topbar{max-height:0;opacity:0;}
   .topbar-inner{display:flex;}
   @media(max-width:620px){.topbar-inner{justify-content:center;}.topbar-loc{display:none;}}
 
+  /* Nav bar */
+  #nav-bar{border-bottom:1px solid #EAE0CF;}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px;}
+
+  /* Desktop links */
+  .nav-links{display:flex;align-items:center;gap:clamp(20px,2.5vw,38px);}
+  .nav-link{text-decoration:none;color:#3D4A4F;font-weight:500;font-size:16px;transition:color .15s ease;position:relative;padding-bottom:3px;}
+  .nav-link::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#0E5C84;transform:scaleX(0);transform-origin:left;transition:transform .2s ease;}
+  .nav-link:hover{color:#0E5C84;}
+  .nav-link:hover::after,.nav-link.active::after{transform:scaleX(1);}
+  .nav-link.active{color:#0E5C84;font-weight:600;}
+
+  /* Book button (desktop) */
+  .nav-book-btn{display:inline-flex;align-items:center;background:#0E5C84;color:#fff !important;padding:10px 22px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;transition:background .2s ease,transform .15s ease;white-space:nowrap;}
+  .nav-book-btn:hover{background:#0B4A6B;transform:translateY(-1px);}
+
+  /* Burger button */
+  .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid #DDD3C2;border-radius:9px;background:#FAF6F0;cursor:pointer;padding:0;transition:background .15s ease;}
+  .nav-burger:hover{background:#F3ECE0;}
+  .burger-bar{display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;transition:transform .25s cubic-bezier(.4,0,.2,1),opacity .2s ease;}
+  #burger-btn[aria-expanded="true"] .burger-bar:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  #burger-btn[aria-expanded="true"] .burger-bar:nth-child(2){opacity:0;transform:scaleX(0);}
+  #burger-btn[aria-expanded="true"] .burger-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* Mobile dropdown menu */
+  #mobile-menu{display:none;flex-direction:column;background:#fff;overflow:hidden;max-height:0;transition:max-height .38s cubic-bezier(.4,0,.2,1);}
+  #mobile-menu.open{max-height:380px;}
+  .mobile-link{display:block;text-decoration:none;color:#3D4A4F;font-weight:600;font-size:17px;padding:15px 22px;border-top:1px solid #F1EADD;transition:color .15s ease,background .15s ease;}
+  .mobile-link:hover{color:#0E5C84;background:#FAF6F0;}
+  .mobile-link.active{color:#0E5C84;}
+  .mobile-book-wrap{padding:16px 22px 24px;border-top:1px solid #F1EADD;}
+  .mobile-book-link{display:block;text-align:center;background:#0E5C84;color:#fff;padding:14px;border-radius:9px;font-weight:600;font-size:16px;text-decoration:none;transition:background .2s ease;}
+  .mobile-book-link:hover{background:#0B4A6B;}
+
+  @media(max-width:880px){
+    .nav-links{display:none;}
+    .nav-burger{display:flex;}
+    .nav-book-btn{display:none;}
+    #mobile-menu{display:flex;}
+  }
+
+  /* ── LAYOUT ── */
   .hero-grid{grid-template-columns:1.08fr 0.92fr;}
   @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
 
@@ -40,22 +84,13 @@
   @keyframes revealUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
   @media(prefers-reduced-motion:no-preference){.reveal{animation:revealUp linear both;animation-timeline:view();animation-range:entry 0% cover 18%;}}
 
-  #main-nav{background:rgba(255,255,255,0.72);box-shadow:0 4px 18px rgba(20,40,55,0.07);transition:box-shadow .25s ease,background .25s ease;}
-  #main-nav.scrolled{background:rgba(255,255,255,0.9);box-shadow:0 10px 30px rgba(20,40,55,0.12);}
-
-  #sidebar-overlay{position:fixed;inset:0;background:rgba(14,32,40,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s ease;}
-  #sidebar-overlay.open{opacity:1;pointer-events:auto;}
-  #sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,88vw);background:#fff;z-index:201;transform:translateX(110%);transition:transform .32s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column;}
-  #sidebar.open{transform:translateX(0);}
-  .sidebar-link{display:block;text-decoration:none;color:#3D4A4F;font-weight:600;font-size:17px;padding:14px 6px;border-bottom:1px solid #F1EADD;transition:color .15s ease;}
-  .sidebar-link:hover,.sidebar-link:focus{color:#0E5C84;}
-
+  /* ── FORMS ── */
   input:focus,select:focus,textarea:focus{border-color:#0E5C84!important;box-shadow:0 0 0 3px rgba(14,92,132,.12)!important;outline:none;}
   input::placeholder,textarea::placeholder{color:#A89E8D;}
 
+  /* ── HOVER UTILITIES ── */
   a.h-blue:hover{color:#0E5C84 !important;}
   a.h-white:hover{color:#fff !important;}
-  a.h-book-nav:hover{background:#0B4A6B !important;transform:translateY(-1px);}
   a.h-cta-primary:hover{background:#0B4A6B !important;transform:translateY(-2px);box-shadow:0 12px 24px rgba(14,92,132,.24) !important;}
   a.h-cta-secondary:hover{background:#F3ECE0 !important;border-color:#0E5C84 !important;}
   a.h-gold-btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
@@ -66,58 +101,47 @@
 </style>
 </head>
 <body>
-<div id="top" style="overflow-x:hidden;">
+<div id="top">
 
-<!-- ============ SIDEBAR ============ -->
-<div id="sidebar-overlay" aria-hidden="true"></div>
-<aside id="sidebar" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 22px 18px;border-bottom:1px solid #EDE5D6;flex-shrink:0;">
-    <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:17px;color:#14323F;letter-spacing:-0.01em;">West Coast Allied Health</span>
-    <button id="sidebar-close" aria-label="Close menu" style="width:40px;height:40px;border:1px solid #E2D8C7;border-radius:10px;background:#FAF6F0;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="#14323F" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-  <nav style="padding:10px 22px 22px;flex:1;" aria-label="Site navigation">
-    <a href="#services" class="sidebar-link">Services</a>
-    <a href="#team" class="sidebar-link">Team</a>
-    <a href="#contact" class="sidebar-link">Contact</a>
-    <a href="refer.html" class="sidebar-link" style="border-bottom:none;">Refer Patients</a>
-  </nav>
-  <div style="padding:0 22px 36px;flex-shrink:0;">
-    <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" style="display:flex;justify-content:center;align-items:center;background:#0E5C84;color:#fff;padding:15px 20px;border-radius:11px;font-weight:600;font-size:16px;text-decoration:none;transition:background .2s ease;" onmouseenter="this.style.background='#0B4A6B'" onmouseleave="this.style.background='#0E5C84'">Book now</a>
-  </div>
-</aside>
-
-<!-- ============ TOP UTILITY BAR ============ -->
-<div style="background:#F0E8DA;border-bottom:1px solid #E6DCCD;">
-  <div class="topbar-inner" style="max-width:1180px;margin:0 auto;padding:8px 22px;align-items:center;justify-content:space-between;gap:16px;font-size:13px;color:#7A7164;">
-    <span class="topbar-loc" style="font-weight:500;">Exercise physiology across Perth &amp; surrounds</span>
-    <a href="mailto:admin@westcoastah.com.au" class="h-topbar-phone" style="color:#5C5347;text-decoration:none;font-weight:500;">admin@westcoastah.com.au</a>
-  </div>
-</div>
-
-<!-- ============ FLOATING NAV ============ -->
-<div style="position:sticky;top:0;z-index:60;padding:14px 16px;">
-  <nav id="main-nav" style="max-width:1080px;margin:0 auto;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid #EAE0CF;border-radius:16px;padding:clamp(11px,1.1vw,15px) clamp(12px,1.1vw,16px) clamp(11px,1.1vw,15px) clamp(18px,1.6vw,26px);display:flex;align-items:center;justify-content:space-between;gap:20px;">
-    <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
-      <img src="assets/logo.png" alt="West Coast Allied Health" style="height:clamp(42px,3vw,52px);width:auto;display:block;" />
-    </a>
-    <div class="nav-links" style="align-items:center;gap:clamp(22px,2vw,36px);">
-      <a href="#services" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">Services</a>
-      <a href="#team" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">Team</a>
-      <a href="#contact" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">Contact</a>
-      <a href="refer.html" class="h-blue" style="text-decoration:none;color:#3D4A4F;font-weight:500;font-size:17px;transition:color .15s ease;">Refer Patients</a>
+<!-- ============ SITE HEADER ============ -->
+<header id="site-header">
+  <div id="topbar">
+    <div class="topbar-inner" style="max-width:1180px;margin:0 auto;padding:7px 22px;align-items:center;justify-content:space-between;gap:16px;font-size:13px;color:#7A7164;">
+      <span class="topbar-loc" style="font-weight:500;">Exercise physiology across Perth &amp; surrounds</span>
+      <a href="mailto:admin@westcoastah.com.au" class="h-topbar-phone" style="color:#5C5347;text-decoration:none;font-weight:500;transition:color .15s ease;">admin@westcoastah.com.au</a>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" class="nav-links h-book-nav" style="align-items:center;background:#0E5C84;color:#fff;padding:13px 26px;border-radius:11px;font-weight:600;font-size:16.5px;text-decoration:none;transition:background .2s ease,transform .15s ease;">Book now</a>
-      <button id="burger-btn" aria-label="Open menu" aria-expanded="false" style="flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;border:1px solid #E2D8C7;border-radius:11px;background:#fff;cursor:pointer;padding:0;" class="nav-burger">
-        <span style="display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;"></span>
-        <span style="display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;"></span>
-        <span style="display:block;width:18px;height:2px;background:#14323F;border-radius:2px;margin:0 auto;"></span>
-      </button>
+  </div>
+  <div id="nav-bar">
+    <div class="nav-inner">
+      <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+        <img src="assets/logo.png" alt="West Coast Allied Health" style="height:46px;width:auto;display:block;" />
+      </a>
+      <nav class="nav-links" aria-label="Site navigation">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#team" class="nav-link">Team</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="refer.html" class="nav-link">Refer Patients</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" class="nav-book-btn">Book now</a>
+        <button id="burger-btn" aria-label="Open menu" aria-expanded="false" class="nav-burger">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
     </div>
-  </nav>
-</div>
+  </div>
+  <div id="mobile-menu" aria-hidden="true">
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#team" class="mobile-link">Team</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="refer.html" class="mobile-link">Refer Patients</a>
+    <div class="mobile-book-wrap">
+      <a href="https://www.halaxy.com/book/appointment/matthew-wood/exercise-physiologist/878501/1312497" target="_blank" rel="noopener" class="mobile-book-link">Book now</a>
+    </div>
+  </div>
+</header>
 
 <!-- ============ HERO ============ -->
 <section style="background:#FAF6F0;">
@@ -452,37 +476,27 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Nav scroll
-  const nav = document.getElementById('main-nav');
+  // Header scroll state
+  const siteHeader = document.getElementById('site-header');
   let raf;
   window.addEventListener('scroll', () => {
     if (raf) return;
-    raf = requestAnimationFrame(() => { raf = null; nav.classList.toggle('scrolled', window.scrollY > 12); });
+    raf = requestAnimationFrame(() => { raf = null; siteHeader.classList.toggle('scrolled', window.scrollY > 30); });
   }, { passive: true });
 
-  // Sidebar
-  const overlay = document.getElementById('sidebar-overlay');
-  const sidebar = document.getElementById('sidebar');
+  // Mobile menu toggle
   const burgerBtn = document.getElementById('burger-btn');
-  const closeBtn = document.getElementById('sidebar-close');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-  function openSidebar() {
-    sidebar.classList.add('open');
-    overlay.classList.add('open');
-    document.body.classList.add('sidebar-open');
-    burgerBtn.setAttribute('aria-expanded', 'true');
+  function setMenuOpen(open) {
+    mobileMenu.classList.toggle('open', open);
+    burgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
   }
-  function closeSidebar() {
-    sidebar.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.classList.remove('sidebar-open');
-    burgerBtn.setAttribute('aria-expanded', 'false');
-  }
-  burgerBtn.addEventListener('click', openSidebar);
-  closeBtn.addEventListener('click', closeSidebar);
-  overlay.addEventListener('click', closeSidebar);
-  document.querySelectorAll('.sidebar-link').forEach(link => link.addEventListener('click', closeSidebar));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+
+  burgerBtn.addEventListener('click', () => setMenuOpen(!mobileMenu.classList.contains('open')));
+  document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenuOpen(false); });
 
   // Contact form → mailto
   document.getElementById('contact-form').addEventListener('submit', function(e) {
