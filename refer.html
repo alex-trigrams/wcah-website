@@ -143,7 +143,7 @@
     <!-- FORM CARD -->
     <div style="background:#fff;border:1px solid #EAE0CF;border-radius:18px;padding:clamp(24px,3.5vw,40px);box-shadow:0 4px 20px rgba(20,40,55,.05);">
       <div id="form-view">
-        <form id="referral-form">
+        <form id="referral-form" novalidate>
           <!-- Patient details -->
           <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#14323F;padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid #EDE5D6;">Patient details</div>
           <div class="field-row" style="display:grid;gap:16px;margin-bottom:18px;">
@@ -185,16 +185,17 @@
             <div><label style="display:block;font-size:13.5px;font-weight:600;color:#4A463E;margin-bottom:7px;">Your phone</label><input name="referrer_phone" type="tel" placeholder="Optional" style="width:100%;padding:12px 14px;border:1px solid #DCD2C2;border-radius:9px;background:#fff;font-family:inherit;font-size:15px;color:#14323F;transition:border-color .15s ease,box-shadow .15s ease;" /></div>
           </div>
 
-          <button type="submit" class="h-submit" style="width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:#0E5C84;color:#fff;padding:16px 24px;border:none;border-radius:10px;font-family:inherit;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Send referral</button>
-          <p style="font-size:13px;color:#9A9183;margin:14px 0 0;text-align:center;text-wrap:pretty;">This opens your email app with everything filled in, so you can check it and hit send. Nothing leaves your device until you do.</p>
+          <div id="form-error" style="display:none;background:#FEF2F2;border:1px solid #FECACA;border-radius:9px;padding:12px 14px;font-size:14px;color:#B91C1C;margin-bottom:16px;text-wrap:pretty;"></div>
+          <input type="hidden" name="_subject" id="form-subject" value="Patient referral" />
+          <button type="submit" id="submit-btn" class="h-submit" style="width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:#0E5C84;color:#fff;padding:16px 24px;border:none;border-radius:10px;font-family:inherit;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Send referral</button>
         </form>
       </div>
 
       <div id="success-view" style="display:none;text-align:center;padding:clamp(20px,4vw,44px) 4px;">
         <div style="width:60px;height:60px;border-radius:50%;background:#E8F2EC;border:1px solid #BFE0CD;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;"><span style="width:20px;height:11px;border:3px solid #2E8B57;border-top:none;border-right:none;transform:rotate(-45deg);margin-top:-4px;display:block;"></span></div>
-        <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:26px;color:#14323F;margin:0 0 12px;">Your email is ready to send</h2>
-        <p style="font-size:16px;line-height:1.65;color:#5C574E;margin:0 auto 8px;max-width:420px;text-wrap:pretty;">We've opened your email app with the referral filled in. Give it a quick check and press send, and we'll be in touch with your patient within one business day.</p>
-        <p style="font-size:14.5px;line-height:1.6;color:#857B6C;margin:0 auto 28px;max-width:420px;text-wrap:pretty;">Nothing happen? Email it straight to <a href="mailto:admin@westcoastah.com.au" style="color:#0E5C84;font-weight:600;text-decoration:none;">admin@westcoastah.com.au</a>.</p>
+        <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:26px;color:#14323F;margin:0 0 12px;">Referral received</h2>
+        <p style="font-size:16px;line-height:1.65;color:#5C574E;margin:0 auto 8px;max-width:420px;text-wrap:pretty;">We'll call your patient within one business day to book them in, and we'll keep you in the loop as things progress.</p>
+        <p style="font-size:14.5px;line-height:1.6;color:#857B6C;margin:0 auto 28px;max-width:420px;text-wrap:pretty;">Prefer to contact us directly? Email <a href="mailto:admin@westcoastah.com.au" style="color:#0E5C84;font-weight:600;text-decoration:none;">admin@westcoastah.com.au</a>.</p>
         <button id="reset-btn" class="h-reset" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:#0E5C84;padding:12px 22px;border:1px solid #CDBFA6;border-radius:10px;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:background .2s ease,border-color .2s ease;">Send another referral</button>
       </div>
     </div>
@@ -272,39 +273,48 @@
   document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenuOpen(false); });
 
-  // Referral form → mailto
-  document.getElementById('referral-form').addEventListener('submit', function(e) {
+  // Referral form → Formspree
+  document.getElementById('referral-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const fd = new FormData(this);
-    const g = k => (fd.get(k) || '').toString().trim();
-    const lines = [
-      'PATIENT DETAILS',
-      'Name: ' + g('patient_name'),
-      'Date of birth: ' + g('patient_dob'),
-      'Phone: ' + g('patient_phone'),
-      'Email: ' + g('patient_email'),
-      '',
-      'REFERRAL DETAILS',
-      'Funding type: ' + g('referral_type'),
-      'Claim / reference no.: ' + g('claim_number'),
-      'Reason for referral: ' + g('reason'),
-      '',
-      'REFERRER DETAILS',
-      'Name: ' + g('referrer_name'),
-      'Practice / clinic: ' + g('referrer_practice'),
-      'Email: ' + g('referrer_email'),
-      'Phone: ' + g('referrer_phone'),
-    ];
-    const subject = 'Patient referral: ' + (g('patient_name') || 'new patient');
-    window.location.href = 'mailto:admin@westcoastah.com.au?subject=' +
-      encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
-    document.getElementById('form-view').style.display = 'none';
-    document.getElementById('success-view').style.display = 'block';
-    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(_) {}
+    const patientName = (fd.get('patient_name') || '').toString().trim();
+    document.getElementById('form-subject').value = 'Patient referral: ' + (patientName || 'new patient');
+
+    const submitBtn = document.getElementById('submit-btn');
+    const errorEl = document.getElementById('form-error');
+    errorEl.style.display = 'none';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const resp = await fetch('https://formspree.io/f/meebrjvz', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (resp.ok) {
+        document.getElementById('form-view').style.display = 'none';
+        document.getElementById('success-view').style.display = 'block';
+        try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(_) {}
+      } else {
+        const data = await resp.json().catch(() => ({}));
+        const msg = (data.errors || []).map(err => err.message).join(' ') ||
+          'Something went wrong. Please try again or email admin@westcoastah.com.au directly.';
+        errorEl.textContent = msg;
+        errorEl.style.display = 'block';
+      }
+    } catch(_) {
+      errorEl.textContent = 'Could not send — please check your connection and try again.';
+      errorEl.style.display = 'block';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send referral';
+    }
   });
 
   document.getElementById('reset-btn').addEventListener('click', () => {
     document.getElementById('referral-form').reset();
+    document.getElementById('form-error').style.display = 'none';
     document.getElementById('success-view').style.display = 'none';
     document.getElementById('form-view').style.display = 'block';
   });
