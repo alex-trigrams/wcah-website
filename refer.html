@@ -66,6 +66,23 @@
   .field-row{grid-template-columns:1fr 1fr;}
   @media(max-width:520px){.field-row{grid-template-columns:1fr;}}
 
+  /* ── SCROLL REVEAL ── */
+  .reveal{opacity:0;transform:translateY(28px);}
+  .reveal.in-view{opacity:1;transform:translateY(0);transition:opacity .8s cubic-bezier(.16,.8,.24,1),transform .8s cubic-bezier(.16,.8,.24,1);}
+  .reveal-item{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,.8,.24,1),transform .6s cubic-bezier(.16,.8,.24,1);}
+  .reveal.in-view .reveal-item{opacity:1;transform:translateY(0);}
+  .reveal.in-view .reveal-item:nth-child(1){transition-delay:.05s;}
+  .reveal.in-view .reveal-item:nth-child(2){transition-delay:.14s;}
+  .reveal.in-view .reveal-item:nth-child(3){transition-delay:.23s;}
+  .reveal.in-view .reveal-item:nth-child(4){transition-delay:.32s;}
+  .reveal.in-view .reveal-item:nth-child(5){transition-delay:.41s;}
+  .reveal.in-view .reveal-item:nth-child(6){transition-delay:.5s;}
+  @media(prefers-reduced-motion:reduce){.reveal,.reveal-item{opacity:1!important;transform:none!important;transition:none!important;}}
+
+  /* ── INTERACTIVE CARD LIFT ── */
+  .card-lift{transition:transform .28s cubic-bezier(.16,.8,.24,1),box-shadow .28s ease,border-color .28s ease;}
+  .card-lift:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(20,40,55,.1);border-color:#D9CBAE;}
+
   /* ── FORMS ── */
   input:focus,select:focus,textarea:focus{border-color:#0E5C84!important;box-shadow:0 0 0 3px rgba(14,92,132,.12)!important;outline:none;}
   input::placeholder,textarea::placeholder{color:#A89E8D;}
@@ -125,7 +142,7 @@
 
 <!-- ============ HERO ============ -->
 <section style="background:#FAF6F0;">
-  <div style="max-width:1180px;margin:0 auto;padding:clamp(30px,4.5vw,56px) 22px clamp(20px,3vw,32px);">
+  <div class="reveal" style="max-width:1180px;margin:0 auto;padding:clamp(30px,4.5vw,56px) 22px clamp(20px,3vw,32px);">
     <a href="index.html" class="h-back" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:#857B6C;font-size:14px;font-weight:500;margin-bottom:22px;transition:color .15s ease;">&larr;&nbsp;Back to home</a>
     <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:16px;">
       <span style="width:8px;height:8px;border-radius:50%;background:#D8A23A;display:block;"></span>
@@ -141,7 +158,7 @@
   <div class="refer-grid" style="max-width:1180px;margin:0 auto;padding:clamp(20px,3vw,36px) 22px clamp(56px,8vw,96px);display:grid;gap:clamp(28px,4vw,48px);align-items:start;">
 
     <!-- FORM CARD -->
-    <div style="background:#fff;border:1px solid #EAE0CF;border-radius:18px;padding:clamp(24px,3.5vw,40px);box-shadow:0 4px 20px rgba(20,40,55,.05);">
+    <div class="reveal" style="background:#fff;border:1px solid #EAE0CF;border-radius:18px;padding:clamp(24px,3.5vw,40px);box-shadow:0 4px 20px rgba(20,40,55,.05);">
       <div id="form-view">
         <form id="referral-form" novalidate>
           <!-- Patient details -->
@@ -201,15 +218,15 @@
     </div>
 
     <!-- SIDEBAR -->
-    <div style="display:flex;flex-direction:column;gap:18px;">
-      <div style="background:#0C2A3A;border-radius:16px;padding:26px 24px;">
+    <div class="reveal" style="display:flex;flex-direction:column;gap:18px;">
+      <div class="reveal-item card-lift" style="background:#0C2A3A;border-radius:16px;padding:26px 24px;">
         <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#fff;margin:0 0 8px;">Prefer paper?</h3>
         <p style="font-size:14.5px;line-height:1.6;color:#A9C4D2;margin:0 0 20px;text-wrap:pretty;">Download the form, fill it in, and email it to us whenever it suits.</p>
         <a href="#" class="h-pdf" style="display:flex;align-items:center;justify-content:center;gap:9px;background:#D8A23A;color:#27200F;padding:13px 20px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:filter .2s ease,transform .15s ease;">Download referral form (PDF)</a>
         <p style="font-size:13px;color:#7E9DAF;margin:14px 0 0;text-align:center;">Email to admin@westcoastah.com.au</p>
       </div>
 
-      <div style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
+      <div class="reveal-item card-lift" style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
         <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 16px;">What we accept</h3>
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#4A463E;"><span style="width:6px;height:6px;border-radius:50%;background:#0E5C84;flex-shrink:0;display:block;"></span>WorkCover WA</div>
@@ -221,7 +238,7 @@
         </div>
       </div>
 
-      <div style="background:#F3EDE3;border:1px solid #EAE1D2;border-radius:16px;padding:26px 24px;">
+      <div class="reveal-item card-lift" style="background:#F3EDE3;border:1px solid #EAE1D2;border-radius:16px;padding:26px 24px;">
         <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 14px;">What happens next</h3>
         <p style="font-size:14.5px;line-height:1.66;color:#6B6458;margin:0 0 12px;text-wrap:pretty;">We call your patient within one business day to book them in.</p>
         <p style="font-size:14.5px;line-height:1.66;color:#6B6458;margin:0;text-wrap:pretty;">After the first session, you'll get a short report. And we'll keep you in the loop as things progress.</p>
@@ -248,6 +265,7 @@
 
 </div>
 
+<script src="assets/reveal.js" defer></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 

@@ -81,8 +81,26 @@
   .field-row-2{grid-template-columns:1fr 1fr;}
   @media(max-width:520px){.field-row-2{grid-template-columns:1fr;}}
 
-  @keyframes revealUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
-  @media(prefers-reduced-motion:no-preference){.reveal{animation:revealUp linear both;animation-timeline:view();animation-range:entry 0% cover 18%;}}
+  /* ── SCROLL REVEAL ── */
+  .reveal{opacity:0;transform:translateY(28px);}
+  .reveal.in-view{opacity:1;transform:translateY(0);transition:opacity .8s cubic-bezier(.16,.8,.24,1),transform .8s cubic-bezier(.16,.8,.24,1);}
+  .reveal-item{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,.8,.24,1),transform .6s cubic-bezier(.16,.8,.24,1);}
+  .reveal.in-view .reveal-item{opacity:1;transform:translateY(0);}
+  .reveal.in-view .reveal-item:nth-child(1){transition-delay:.05s;}
+  .reveal.in-view .reveal-item:nth-child(2){transition-delay:.14s;}
+  .reveal.in-view .reveal-item:nth-child(3){transition-delay:.23s;}
+  .reveal.in-view .reveal-item:nth-child(4){transition-delay:.32s;}
+  .reveal.in-view .reveal-item:nth-child(5){transition-delay:.41s;}
+  .reveal.in-view .reveal-item:nth-child(6){transition-delay:.5s;}
+  @media(prefers-reduced-motion:reduce){.reveal,.reveal-item{opacity:1!important;transform:none!important;transition:none!important;}}
+
+  /* ── INTERACTIVE CARD LIFT ── */
+  .card-lift{transition:transform .28s cubic-bezier(.16,.8,.24,1),box-shadow .28s ease,border-color .28s ease;}
+  .card-lift:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(20,40,55,.1);border-color:#D9CBAE;}
+  .tag-lift{transition:transform .2s ease,background .2s ease,border-color .2s ease;}
+  .tag-lift:hover{transform:translateY(-2px);background:#F3ECE0;border-color:#CDBFA6;}
+  .badge-lift{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  .badge-lift:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(20,40,55,.08);border-color:#CDBFA6;}
 
   /* ── FORMS ── */
   input:focus,select:focus,textarea:focus{border-color:#0E5C84!important;box-shadow:0 0 0 3px rgba(14,92,132,.12)!important;outline:none;}
@@ -170,14 +188,14 @@
 
 <!-- ============ WAYS WE SEE YOU ============ -->
 <section style="background:#fff;border-top:1px solid #EFE7D9;border-bottom:1px solid #EFE7D9;">
-  <div style="max-width:1180px;margin:0 auto;padding:clamp(34px,4.5vw,52px) 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,3vw,44px);">
-    <div style="border-top:2px solid #14323F;padding-top:16px;">
+  <div class="reveal" style="max-width:1180px;margin:0 auto;padding:clamp(34px,4.5vw,52px) 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,3vw,44px);">
+    <div class="reveal-item" style="border-top:2px solid #14323F;padding-top:16px;">
       <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;">In Clinic</div>
     </div>
-    <div style="border-top:2px solid #14323F;padding-top:16px;">
+    <div class="reveal-item" style="border-top:2px solid #14323F;padding-top:16px;">
       <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;">Home Visits</div>
     </div>
-    <div style="border-top:2px solid #14323F;padding-top:16px;">
+    <div class="reveal-item" style="border-top:2px solid #14323F;padding-top:16px;">
       <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;">Telehealth</div>
     </div>
   </div>
@@ -202,12 +220,12 @@
         <div>
           <div style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;margin-bottom:14px;">Funding bodies we work with</div>
           <div style="display:flex;flex-wrap:wrap;gap:14px;">
-            <div style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">NDIS</div>
-            <div style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">DVA</div>
-            <div style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">WorkCover WA</div>
-            <div style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Medicare (EPC)</div>
-            <div style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Private Health</div>
-            <div style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Motor Vehicle Insurance</div>
+            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">NDIS</div>
+            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">DVA</div>
+            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">WorkCover WA</div>
+            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Medicare (EPC)</div>
+            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Private Health</div>
+            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Motor Vehicle Insurance</div>
           </div>
           <p style="font-size:13px;color:#9A9183;margin:12px 0 0;">Placeholder — swap in logos once you send them through.</p>
         </div>
@@ -224,20 +242,20 @@
         <div style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;margin-bottom:14px;">How we help</div>
         <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(29px,3.6vw,44px);line-height:1.12;letter-spacing:-0.01em;margin:0;color:#14323F;text-wrap:balance;">Where we can help</h2>
       </div>
-      <div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:0 0 28px;border-bottom:1px solid #EDE5D6;">
+      <div class="reveal">
+        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:0 0 28px;border-bottom:1px solid #EDE5D6;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">01</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Injury Rehabilitation</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Recover with confidence through personalised exercise programs designed to reduce pain, restore movement, and help you safely return to work, sport, and everyday life. We manage all types of injuries, including recent or long-term issues, and help you understand how a focused exercise plan can improve your confidence, pain, and independence.</p></div>
         </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
+        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">02</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Chronic Condition Management</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Evidence-based exercise programs tailored to help manage chronic conditions, improve your health, and enhance your quality of life through safe and sustainable movement. We work closely with you to build long-term habits that support better health and ongoing independence.</p></div>
         </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
+        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">03</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Strength &amp; Conditioning</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Build strength, improve performance, and reduce injury risk with individualised training programs designed to help you achieve your health, fitness, or sporting goals. Whether you're new to exercise or an experienced athlete, we'll create a program that challenges and supports you every step of the way.</p></div>
         </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0 0;">
+        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0 0;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">04</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Group Classes</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Enjoy supportive, supervised exercise sessions in a welcoming group environment, designed to improve strength, mobility, balance, and overall wellbeing for all fitness levels. Our classes are led by qualified Exercise Physiologists, ensuring every exercise is safe, effective, and tailored to your abilities.</p></div>
         </div>
@@ -249,16 +267,16 @@
         <span style="font-size:14.5px;color:#9A9183;">and plenty more, just ask</span>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:10px;">
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Arthritis</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Diabetes</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Hypertension</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Heart disease</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Osteoporosis / osteopenia</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Chronic obstructive pulmonary disease</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Weight management</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Chronic pain</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Cancer recovery</span>
-        <span style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;">Mental health</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Arthritis</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Diabetes</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Hypertension</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Heart disease</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Osteoporosis / osteopenia</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Chronic obstructive pulmonary disease</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Weight management</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Chronic pain</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Cancer recovery</span>
+        <span class="tag-lift" style="background:#fff;border:1px solid #E6DCCD;color:#4A463E;font-size:14.5px;font-weight:500;padding:9px 16px;border-radius:100px;display:inline-block;">Mental health</span>
       </div>
     </div>
   </div>
@@ -274,7 +292,7 @@
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,32px);">
       <!-- EP Card 1 -->
-      <div style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;overflow:hidden;">
+      <div class="reveal-item card-lift" style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;overflow:hidden;">
         <div style="aspect-ratio:4/3.4;background:repeating-linear-gradient(135deg,#ECE3D5 0 16px,#F3ECE0 16px 32px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px;">
           <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:#8C8270;background:#FAF6F0;border:1px solid #E6DCCD;padding:6px 12px;border-radius:7px;">photo: Matthew Wood</span>
         </div>
@@ -288,7 +306,7 @@
         </div>
       </div>
       <!-- EP Card 2 -->
-      <div style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;overflow:hidden;">
+      <div class="reveal-item card-lift" style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;overflow:hidden;">
         <div style="aspect-ratio:4/3.4;background:repeating-linear-gradient(135deg,#ECE3D5 0 16px,#F3ECE0 16px 32px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px;">
           <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:#8C8270;background:#FAF6F0;border:1px solid #E6DCCD;padding:6px 12px;border-radius:7px;">photo: EP name</span>
         </div>
@@ -310,10 +328,10 @@
       <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(29px,3.6vw,44px);line-height:1.12;letter-spacing:-0.01em;margin:0;color:#14323F;text-wrap:balance;">Why people keep choosing West Coast Allied Health</h2>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(24px,3vw,40px);">
-      <div style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Personalised Care</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Every exercise program is tailored to your goals, lifestyle, and current ability to ensure the best possible outcomes.</p></div>
-      <div style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Evidence Based Treatment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our Accredited Exercise Physiologists use the latest research and proven techniques to help you move better, recover faster, and stay healthier.</p></div>
-      <div style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Support Every Step of the Way</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We build long-term relationships, providing ongoing guidance, motivation, and accountability throughout your journey.</p></div>
-      <div style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Real Results That Last</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our focus is on achieving lasting improvements in strength, mobility, confidence, and overall quality of life—not just short-term fixes.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Personalised Care</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Every exercise program is tailored to your goals, lifestyle, and current ability to ensure the best possible outcomes.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Evidence Based Treatment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our Accredited Exercise Physiologists use the latest research and proven techniques to help you move better, recover faster, and stay healthier.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Support Every Step of the Way</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We build long-term relationships, providing ongoing guidance, motivation, and accountability throughout your journey.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Real Results That Last</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our focus is on achieving lasting improvements in strength, mobility, confidence, and overall quality of life—not just short-term fixes.</p></div>
     </div>
   </div>
 </section>
@@ -335,10 +353,10 @@
           <a href="#contact" class="h-ghost-dark" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#fff;padding:15px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid rgba(255,255,255,.26);transition:background .2s ease,border-color .2s ease;">Have a question?</a>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:13px;">
-        <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;"><span style="width:8px;height:8px;border-radius:50%;background:#2BA8E0;margin-top:7px;flex-shrink:0;display:block;"></span><div><div style="color:#fff;font-weight:600;font-size:15.5px;">Your patient gets in fast</div><div style="color:#92B2C3;font-size:14px;margin-top:3px;line-height:1.5;">Recovery stalls when appointments are weeks out, so we don't make people wait.</div></div></div>
-        <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;"><span style="width:8px;height:8px;border-radius:50%;background:#2BA8E0;margin-top:7px;flex-shrink:0;display:block;"></span><div><div style="color:#fff;font-weight:600;font-size:15.5px;">You hear back from us</div><div style="color:#92B2C3;font-size:14px;margin-top:3px;line-height:1.5;">Clear updates on how they're progressing, sent without you asking.</div></div></div>
-        <div style="display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;"><span style="width:8px;height:8px;border-radius:50%;background:#2BA8E0;margin-top:7px;flex-shrink:0;display:block;"></span><div><div style="color:#fff;font-weight:600;font-size:15.5px;">We know the paperwork</div><div style="color:#92B2C3;font-size:14px;margin-top:3px;line-height:1.5;">WorkCover WA, motor vehicle claims, NDIS, DVA and GP care plans, all sorted.</div></div></div>
+      <div class="reveal" style="display:flex;flex-direction:column;gap:13px;">
+        <div class="reveal-item badge-lift" style="display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;"><span style="width:8px;height:8px;border-radius:50%;background:#2BA8E0;margin-top:7px;flex-shrink:0;display:block;"></span><div><div style="color:#fff;font-weight:600;font-size:15.5px;">Your patient gets in fast</div><div style="color:#92B2C3;font-size:14px;margin-top:3px;line-height:1.5;">Recovery stalls when appointments are weeks out, so we don't make people wait.</div></div></div>
+        <div class="reveal-item badge-lift" style="display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;"><span style="width:8px;height:8px;border-radius:50%;background:#2BA8E0;margin-top:7px;flex-shrink:0;display:block;"></span><div><div style="color:#fff;font-weight:600;font-size:15.5px;">You hear back from us</div><div style="color:#92B2C3;font-size:14px;margin-top:3px;line-height:1.5;">Clear updates on how they're progressing, sent without you asking.</div></div></div>
+        <div class="reveal-item badge-lift" style="display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;"><span style="width:8px;height:8px;border-radius:50%;background:#2BA8E0;margin-top:7px;flex-shrink:0;display:block;"></span><div><div style="color:#fff;font-weight:600;font-size:15.5px;">We know the paperwork</div><div style="color:#92B2C3;font-size:14px;margin-top:3px;line-height:1.5;">WorkCover WA, motor vehicle claims, NDIS, DVA and GP care plans, all sorted.</div></div></div>
       </div>
     </div>
   </div>
@@ -352,9 +370,9 @@
       <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(29px,3.6vw,44px);line-height:1.12;letter-spacing:-0.01em;margin:0;color:#14323F;text-wrap:balance;">How your visit goes</h2>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:clamp(24px,3vw,40px);">
-      <div style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step one</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Book an Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Book online, email, or have your GP refer you. We'll find a day and time that suits.</p></div>
-      <div style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step two</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Initial Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll discuss your history, goals, and assess where you're currently at.</p></div>
-      <div style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step three</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Ongoing Management</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll create a program that will help you best, whether it's for home or gym, and then progress as we go along.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step one</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Book an Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Book online, email, or have your GP refer you. We'll find a day and time that suits.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step two</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Initial Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll discuss your history, goals, and assess where you're currently at.</p></div>
+      <div class="reveal-item card-lift" style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step three</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Ongoing Management</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll create a program that will help you best, whether it's for home or gym, and then progress as we go along.</p></div>
     </div>
   </div>
 </section>
@@ -404,8 +422,8 @@
       </div>
 
       <!-- Details side -->
-      <div style="display:flex;flex-direction:column;gap:18px;">
-        <div style="background:#FAF6F0;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
+      <div class="reveal" style="display:flex;flex-direction:column;gap:18px;">
+        <div class="reveal-item card-lift" style="background:#FAF6F0;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
           <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 20px;">Contact details</h3>
           <div style="display:flex;flex-direction:column;gap:16px;">
             <div style="display:flex;align-items:flex-start;gap:13px;">
@@ -418,7 +436,7 @@
             </div>
           </div>
         </div>
-        <div style="background:#FAF6F0;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
+        <div class="reveal-item card-lift" style="background:#FAF6F0;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
           <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 16px;">Hours</h3>
           <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;">
             <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Monday – Friday</span><span style="font-weight:600;color:#14323F;">8 am – 6 pm</span></div>
@@ -426,7 +444,7 @@
             <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Sunday</span><span style="color:#9A9183;">Closed</span></div>
           </div>
         </div>
-        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary" style="display:flex;justify-content:center;align-items:center;background:#0E5C84;color:#fff;padding:16px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book a session online</a>
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary reveal-item" style="display:flex;justify-content:center;align-items:center;background:#0E5C84;color:#fff;padding:16px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book a session online</a>
       </div>
     </div>
   </div>
@@ -435,12 +453,12 @@
 <!-- ============ FOOTER ============ -->
 <footer style="background:#0C2A3A;color:#fff;">
   <div style="max-width:1180px;margin:0 auto;padding:clamp(48px,6vw,76px) 22px clamp(28px,3vw,36px);">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;">
-      <div style="max-width:300px;">
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;">
+      <div class="reveal-item" style="max-width:300px;">
         <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;letter-spacing:-0.01em;color:#fff;">West Coast<span style="color:#2BA8E0;"> Allied Health</span></div>
         <p style="font-size:14.5px;line-height:1.65;color:#9FBACC;margin:14px 0 0;text-wrap:pretty;">Accredited exercise physiology to help you move better and feel stronger, right across Perth.</p>
       </div>
-      <div>
+      <div class="reveal-item">
         <div style="font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6F94A8;margin-bottom:16px;">Explore</div>
         <div style="display:flex;flex-direction:column;gap:11px;">
           <a href="#services" class="h-white" style="text-decoration:none;color:#C6D8E3;font-size:15px;transition:color .15s ease;">Services</a>
@@ -450,14 +468,14 @@
           <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-white" style="text-decoration:none;color:#C6D8E3;font-size:15px;transition:color .15s ease;">Book now</a>
         </div>
       </div>
-      <div>
+      <div class="reveal-item">
         <div style="font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6F94A8;margin-bottom:16px;">Get in touch</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:15px;color:#C6D8E3;">
           <a href="mailto:admin@westcoastah.com.au" class="h-white" style="text-decoration:none;color:#C6D8E3;">admin@westcoastah.com.au</a>
           <span style="color:#9FBACC;">Perth &amp; surrounds, WA</span>
         </div>
       </div>
-      <div>
+      <div class="reveal-item">
         <div style="font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6F94A8;margin-bottom:16px;">How we see you</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:15px;color:#C6D8E3;">
           <span>In Clinic</span>
@@ -478,6 +496,7 @@
 
 </div>
 
+<script src="assets/reveal.js" defer></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
