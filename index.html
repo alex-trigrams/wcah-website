@@ -99,6 +99,11 @@
   .card-lift:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(20,40,55,.1);border-color:#D9CBAE;}
   .tag-lift{transition:transform .2s ease,background .2s ease,border-color .2s ease;}
   .tag-lift:hover{transform:translateY(-2px);background:#F3ECE0;border-color:#CDBFA6;}
+  .funding-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+  .funding-cell{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;padding:14px;background:#fff;border:1px solid #E6DCCD;border-radius:12px;overflow:hidden;}
+  .funding-cell img{width:100%;height:100%;object-fit:contain;display:block;border-radius:6px;}
+  @media(max-width:860px){.funding-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:480px){.funding-grid{grid-template-columns:repeat(2,1fr);gap:10px;}}
   .badge-lift{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
   .badge-lift:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(20,40,55,.08);border-color:#CDBFA6;}
 
@@ -126,7 +131,7 @@
   <div id="topbar">
     <div class="topbar-inner" style="max-width:1180px;margin:0 auto;padding:7px 22px;align-items:center;justify-content:space-between;gap:16px;font-size:13px;color:#7A7164;">
       <span class="topbar-loc" style="font-weight:500;">Exercise physiology across Perth &amp; surrounds</span>
-      <a href="mailto:admin@westcoastah.com.au" class="h-topbar-phone" style="color:#5C5347;text-decoration:none;font-weight:500;transition:color .15s ease;">admin@westcoastah.com.au</a>
+      <span style="display:flex;gap:18px;align-items:center;"><a href="tel:0418719380" class="h-topbar-phone" style="color:#5C5347;text-decoration:none;font-weight:500;transition:color .15s ease;">0418 719 380</a><a href="mailto:admin@westcoastah.com.au" class="h-topbar-phone" style="color:#5C5347;text-decoration:none;font-weight:500;transition:color .15s ease;">admin@westcoastah.com.au</a></span>
     </div>
   </div>
   <div id="nav-bar">
@@ -217,18 +222,17 @@
         <p style="font-size:17px;line-height:1.72;color:#5C574E;margin:0 0 18px;text-wrap:pretty;">Whether you're recovering from an injury, managing a chronic health condition, improving your mobility, or working towards your health and fitness goals, our team is here to guide and support you every step of the way. We take the time to understand your goals and create individualised treatment plans that focus on achieving long-term results, not just short-term relief.</p>
         <p style="font-size:17px;line-height:1.72;color:#5C574E;margin:0 0 28px;text-wrap:pretty;">Our mission is simple: to empower every person with the knowledge, support, and confidence to move better, feel stronger, and enjoy a healthier quality of life.</p>
         <div style="border-left:2px solid #DDD3C2;padding-left:16px;margin-bottom:32px;display:inline-block;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:24px;color:#0E5C84;">ESSA accredited</div><div style="font-size:14px;color:#847C6F;margin-top:2px;">exercise physiologists</div></div>
-        <div>
-          <div style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;margin-bottom:14px;">Funding bodies we work with</div>
-          <div style="display:flex;flex-wrap:wrap;gap:14px;">
-            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">NDIS</div>
-            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">DVA</div>
-            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">WorkCover WA</div>
-            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Medicare (EPC)</div>
-            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Private Health</div>
-            <div class="badge-lift" style="display:flex;align-items:center;justify-content:center;height:56px;padding:0 22px;background:#fff;border:1px solid #E6DCCD;border-radius:9px;font-size:13.5px;font-weight:600;color:#6B6458;">Motor Vehicle Insurance</div>
-          </div>
-          <p style="font-size:13px;color:#9A9183;margin:12px 0 0;">Placeholder — swap in logos once you send them through.</p>
-        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:clamp(40px,5vw,64px);padding-top:clamp(32px,4vw,44px);border-top:1px solid #E6DCCD;">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;margin-bottom:18px;text-align:center;">Funding bodies we work with</div>
+      <div class="funding-grid">
+        <div class="funding-cell badge-lift"><img src="assets/funding/medicare.png" alt="Medicare" loading="lazy"></div>
+        <div class="funding-cell badge-lift"><img src="assets/funding/dva.jpg" alt="Department of Veterans' Affairs (DVA)" loading="lazy"></div>
+        <div class="funding-cell badge-lift"><img src="assets/funding/ndis.jpg" alt="NDIS" loading="lazy"></div>
+        <div class="funding-cell badge-lift"><img src="assets/funding/workcover.png" alt="WorkCover WA" loading="lazy"></div>
+        <div class="funding-cell badge-lift" style="flex-direction:column;gap:6px;text-align:center;"><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(15px,1.6vw,21px);line-height:1.15;color:#0E5C84;">Private<br>Health</span><span style="font-size:11.5px;color:#847C6F;letter-spacing:.02em;">All major funds</span></div>
+        <div class="funding-cell badge-lift"><img src="assets/funding/my-aged-care.jpg" alt="My Aged Care" loading="lazy"></div>
       </div>
     </div>
   </div>
@@ -431,17 +435,22 @@
               <div><div style="font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9A9183;margin-bottom:3px;">Email</div><a href="mailto:admin@westcoastah.com.au" style="font-size:15.5px;color:#14323F;font-weight:500;text-decoration:none;">admin@westcoastah.com.au</a></div>
             </div>
             <div style="display:flex;align-items:flex-start;gap:13px;">
+              <span style="width:36px;height:36px;border-radius:9px;background:#fff;border:1px solid #E6DCCD;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#0E5C84;font-size:15px;">&#9742;</span>
+              <div><div style="font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9A9183;margin-bottom:3px;">Phone</div><a href="tel:0418719380" style="font-size:15.5px;color:#14323F;font-weight:500;text-decoration:none;">0418 719 380</a></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:13px;">
               <span style="width:36px;height:36px;border-radius:9px;background:#fff;border:1px solid #E6DCCD;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#0E5C84;font-size:17px;">&#9679;</span>
-              <div><div style="font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9A9183;margin-bottom:3px;">Location</div><span style="font-size:15.5px;color:#14323F;font-weight:500;">Perth &amp; surrounds, WA</span></div>
+              <div><div style="font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9A9183;margin-bottom:3px;">Locations</div><div style="font-size:15.5px;color:#14323F;font-weight:500;line-height:1.5;">5 Ikara Lane, Yanchep WA<span style="display:block;font-size:13.5px;color:#847C6F;font-weight:400;">inside XO Fit</span></div><div style="font-size:15.5px;color:#14323F;font-weight:500;line-height:1.5;margin-top:8px;">3/185 Blair St, Bunbury WA<span style="display:block;font-size:13.5px;color:#847C6F;font-weight:400;">inside Zap Fitness</span></div></div>
             </div>
           </div>
         </div>
         <div class="reveal-item card-lift" style="background:#FAF6F0;border:1px solid #EAE0CF;border-radius:16px;padding:26px 24px;">
-          <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 16px;">Hours</h3>
+          <h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;margin:0 0 16px;">Operating Hours</h3>
           <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;">
-            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Monday – Friday</span><span style="font-weight:600;color:#14323F;">8 am – 6 pm</span></div>
-            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Saturday</span><span style="font-weight:600;color:#14323F;">By arrangement</span></div>
-            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Sunday</span><span style="color:#9A9183;">Closed</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Mon – Thurs</span><span style="font-weight:600;color:#14323F;">7 am – 5 pm</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Fri</span><span style="font-weight:600;color:#14323F;">7 am – 3 pm</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Sat</span><span style="font-weight:600;color:#14323F;">By request only</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Sun</span><span style="font-weight:400;color:#9A9183;">Closed</span></div>
           </div>
         </div>
         <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary reveal-item" style="display:flex;justify-content:center;align-items:center;background:#0E5C84;color:#fff;padding:16px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book a session online</a>
@@ -471,8 +480,10 @@
       <div class="reveal-item">
         <div style="font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6F94A8;margin-bottom:16px;">Get in touch</div>
         <div style="display:flex;flex-direction:column;gap:11px;font-size:15px;color:#C6D8E3;">
+          <a href="tel:0418719380" class="h-white" style="text-decoration:none;color:#C6D8E3;">0418 719 380</a>
           <a href="mailto:admin@westcoastah.com.au" class="h-white" style="text-decoration:none;color:#C6D8E3;">admin@westcoastah.com.au</a>
-          <span style="color:#9FBACC;">Perth &amp; surrounds, WA</span>
+          <span style="color:#9FBACC;">5 Ikara Lane, Yanchep WA (inside XO Fit)</span>
+          <span style="color:#9FBACC;">3/185 Blair St, Bunbury WA (inside Zap Fitness)</span>
         </div>
       </div>
       <div class="reveal-item">
