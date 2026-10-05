@@ -145,3 +145,15 @@ body.modal-open{overflow:hidden;}
   .reveal .as-back,.reveal .as-front{opacity:1!important;}
 }
 @media(max-width:880px){.nav-book-btn.btn-book{display:none;}}
+
+/* ── Footer: socials + studio credit ── */
+.footer-bottom{margin-top:clamp(36px,4vw,52px);padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;}
+.footer-socials{display:flex;gap:10px;}
+.social-btn{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.16);color:#C6D8E3;display:grid;place-items:center;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);}
+.social-btn svg{width:19px;height:19px;display:block;}
+.social-btn:hover{background:#fff;color:#0C2A3A;border-color:#fff;transform:translateY(-3px);}
+.social-btn:focus-visible{outline:3px solid #E7B24A;outline-offset:2px;}
+.footer-credit{margin-top:18px;text-align:center;}
+.site-credit{font-size:11.5px;letter-spacing:.08em;color:#55788B;text-decoration:none;transition:color .2s ease;}
+.site-credit span{font-weight:600;letter-spacing:.14em;}
+.site-credit:hover{color:#C6D8E3;}
