@@ -33,8 +33,6 @@
   .nav-link:hover::after,.nav-link.active::after{transform:scaleX(1);}
   .nav-link.active{color:#0E5C84;font-weight:600;}
 
-  .nav-book-btn{display:inline-flex;align-items:center;background:#0E5C84;color:#fff !important;padding:10px 22px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;transition:background .2s ease,transform .15s ease;white-space:nowrap;}
-  .nav-book-btn:hover{background:#0B4A6B;transform:translateY(-1px);}
 
   .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid #DDD3C2;border-radius:9px;background:#FAF6F0;cursor:pointer;padding:0;transition:background .15s ease;}
   .nav-burger:hover{background:#F3ECE0;}
@@ -49,8 +47,6 @@
   .mobile-link:hover{color:#0E5C84;background:#FAF6F0;}
   .mobile-link.active{color:#0E5C84;}
   .mobile-book-wrap{padding:16px 22px 24px;border-top:1px solid #F1EADD;}
-  .mobile-book-link{display:block;text-align:center;background:#0E5C84;color:#fff;padding:14px;border-radius:9px;font-weight:600;font-size:16px;text-decoration:none;transition:background .2s ease;}
-  .mobile-book-link:hover{background:#0B4A6B;}
 
   @media(max-width:880px){
     .nav-links{display:none;}
@@ -96,6 +92,7 @@
   button.h-submit:hover{background:#0B4A6B !important;transform:translateY(-1px);box-shadow:0 12px 24px rgba(14,92,132,.24) !important;}
   button.h-reset:hover{background:#F3ECE0 !important;border-color:#0E5C84 !important;}
 </style>
+<link rel="stylesheet" href="assets/fx.css">
 </head>
 <body>
 <div id="top" style="min-height:100vh;display:flex;flex-direction:column;">
@@ -120,7 +117,7 @@
         <a href="refer.html" class="nav-link active">Refer Patients</a>
       </nav>
       <div style="display:flex;align-items:center;gap:10px;">
-        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="nav-book-btn">Book now</a>
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="nav-book-btn btn-book bb-sm">Book now<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
         <button id="burger-btn" aria-label="Open menu" aria-expanded="false" class="nav-burger">
           <span class="burger-bar"></span>
           <span class="burger-bar"></span>
@@ -135,7 +132,7 @@
     <a href="index.html#contact" class="mobile-link">Contact</a>
     <a href="refer.html" class="mobile-link active">Refer Patients</a>
     <div class="mobile-book-wrap">
-      <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="mobile-book-link">Book now</a>
+      <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="mobile-book-link btn-book bb-block">Book now<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
     </div>
   </div>
 </header>
@@ -259,13 +256,18 @@
         <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-white" style="text-decoration:none;color:#C6D8E3;transition:color .15s ease;">Book now</a>
       </div>
     </div>
-    <div style="margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13.5px;color:#7E9DAF;">&copy; <span id="year"></span> West Coast Allied Health. All rights reserved.</div>
+    <div class="footer-bottom" style="margin-top:28px;padding-top:22px;">
+      <span style="font-size:13.5px;color:#7E9DAF;">&copy; <span id="year"></span> West Coast Allied Health. All rights reserved.</span>
+      <div class="footer-socials"><a href="https://www.instagram.com/westcoastalliedhealth/" target="_blank" rel="noopener" aria-label="West Coast Allied Health on Instagram" class="social-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
+    </div>
+    <div class="footer-credit"><a href="https://trigrams.studio" target="_blank" rel="noopener" class="site-credit">Website by <span>TRIGRAMS STUDIO</span></a></div>
   </div>
 </footer>
 
 </div>
 
 <script src="assets/reveal.js" defer></script>
+<script src="assets/fx.js" defer></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
