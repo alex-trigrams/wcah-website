@@ -66,8 +66,12 @@
   }
 
   /* ── LAYOUT ── */
-  .hero-grid{grid-template-columns:1.08fr 0.92fr;}
-  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+  /* ── HERO (beach) ── */
+  .hero-beach{position:relative;overflow:hidden;background:#14323F;}
+  .hero-beach-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 55%;}
+  .hero-beach-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,36,50,.86) 0%,rgba(12,36,50,.66) 38%,rgba(12,36,50,.18) 72%,rgba(12,36,50,0) 100%);}
+  @media(max-width:900px){.hero-beach-shade{background:linear-gradient(180deg,rgba(12,36,50,.55) 0%,rgba(12,36,50,.78) 100%);}}
 
   .split{grid-template-columns:1fr 1fr;}
   @media(max-width:860px){.split{grid-template-columns:1fr;}}
@@ -167,25 +171,20 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<section style="background:#FAF6F0;">
-  <div style="max-width:1180px;margin:0 auto;padding:clamp(36px,5.5vw,72px) 22px clamp(48px,7vw,86px);">
-    <div class="hero-grid" style="display:grid;gap:clamp(34px,5vw,68px);align-items:center;">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;">
-          <span style="width:8px;height:8px;border-radius:50%;background:#D8A23A;display:block;"></span>
-          <span style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;">Accredited exercise physiology in Perth</span>
-        </div>
-        <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(38px,5.8vw,66px);line-height:1.06;letter-spacing:-0.015em;margin:0 0 22px;color:#14323F;text-wrap:balance;">Your Health is Our Priority</h1>
-        <p style="font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:#5C574E;margin:0 0 32px;max-width:520px;text-wrap:pretty;">At West Coast Allied Health we are committed to delivering compassionate, personalised allied health services that empower individuals to recover from injury, build strength, manage long-term health conditions, and live healthier, more active lives.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:13px;">
-          <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary" style="display:inline-flex;align-items:center;gap:9px;background:#0E5C84;color:#fff;padding:15px 26px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book now</a>
-          <a href="refer.html" class="h-cta-secondary" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#0E5C84;padding:15px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid #CDBFA6;transition:background .2s ease,border-color .2s ease;">Refer a patient</a>
-        </div>
+<section class="hero-beach">
+  <img src="assets/hero-beach.jpg" alt="" class="hero-beach-img" fetchpriority="high">
+  <div class="hero-beach-shade"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(64px,9vw,128px) 22px clamp(72px,10vw,140px);">
+    <div style="max-width:600px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#E7B24A;display:block;"></span>
+        <span style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#F3E6CC;">Accredited exercise physiology in Perth</span>
       </div>
-      <div>
-        <div style="aspect-ratio:4/4.5;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #E6DCCD;display:flex;align-items:center;justify-content:center;">
-          <img src="assets/logo-centred.png" alt="West Coast Allied Health" style="width:64%;height:auto;display:block;" />
-        </div>
+      <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(42px,6.4vw,76px);line-height:1.04;letter-spacing:-0.015em;margin:0 0 22px;color:#fff;text-wrap:balance;text-shadow:0 2px 24px rgba(8,24,34,.35);">Your Health is Our Priority</h1>
+      <p style="font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:rgba(255,255,255,.9);margin:0 0 34px;max-width:520px;text-wrap:pretty;">At West Coast Allied Health we are committed to delivering compassionate, personalised allied health services that empower individuals to recover from injury, build strength, manage long-term health conditions, and live healthier, more active lives.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;">
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary" style="display:inline-flex;align-items:center;gap:9px;background:#0E5C84;color:#fff;padding:15px 26px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.22);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book now</a>
+        <a href="refer.html" class="h-ghost-dark" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);color:#fff;padding:15px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid rgba(255,255,255,.55);transition:background .2s ease,border-color .2s ease;">Refer a patient</a>
       </div>
     </div>
   </div>
