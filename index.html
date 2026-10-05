@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;scroll-padding-top:100px;-webkit-text-size-adjust:100%;}
+  html{scroll-behavior:smooth;scroll-padding-top:110px;-webkit-text-size-adjust:100%;}
   body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#14323F;background:#FAF6F0;line-height:1.6;overflow-x:clip;}
   ::selection{background:#E7D8BF;}
 
@@ -26,7 +26,7 @@
 
   /* Nav bar */
   #nav-bar{border-bottom:1px solid #EAE0CF;}
-  .nav-inner{max-width:1180px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px;}
+  .nav-inner{max-width:1180px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;height:88px;gap:16px;}
 
   /* Desktop links */
   .nav-links{display:flex;align-items:center;gap:clamp(20px,2.5vw,38px);}
@@ -66,8 +66,27 @@
   }
 
   /* ── LAYOUT ── */
-  .hero-grid{grid-template-columns:1.08fr 0.92fr;}
-  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+  /* ── HERO (beach) ── */
+  .hero-beach{position:relative;overflow:hidden;background:#14323F;isolation:isolate;}
+  .hero-beach-bg{position:absolute;inset:-6% -4%;will-change:transform;}
+  .hero-beach-img{width:100%;height:100%;object-fit:cover;object-position:55% 50%;display:block;animation:heroZoom 14s cubic-bezier(.2,.6,.2,1) both;}
+  @keyframes heroZoom{from{transform:scale(1.12);}to{transform:scale(1);}}
+  .hero-beach-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,36,50,.86) 0%,rgba(12,36,50,.64) 36%,rgba(12,36,50,.12) 64%,rgba(12,36,50,0) 100%),linear-gradient(0deg,rgba(12,36,50,.35) 0%,rgba(12,36,50,0) 30%);}
+  .hero-beach-inner{position:relative;max-width:1180px;margin:0 auto;padding:clamp(64px,9vw,128px) 22px clamp(72px,10vw,140px);display:grid;grid-template-columns:minmax(0,600px) 1fr;grid-template-areas:"copy logo";align-items:center;gap:40px;}
+  .hero-beach-copy{grid-area:copy;}
+  .hero-beach-logo{grid-area:logo;justify-self:center;align-self:center;position:relative;isolation:isolate;width:clamp(220px,23vw,320px);}
+  .hero-beach-logo::before{content:'';position:absolute;inset:-30% -32%;background:radial-gradient(closest-side,rgba(255,251,245,.96),rgba(255,249,241,.9) 40%,rgba(255,244,230,.55) 68%,rgba(255,240,222,0));filter:blur(10px);z-index:-1;animation:haloIn 2.6s .4s ease-out both;}
+  @keyframes haloIn{from{opacity:0;transform:scale(.7);}to{opacity:1;transform:none;}}
+  .hero-beach-logo img{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 2px rgba(20,30,40,.18)) drop-shadow(0 14px 22px rgba(20,30,40,.28)) drop-shadow(0 34px 48px rgba(20,30,40,.18));animation:logoIn 2.4s .6s cubic-bezier(.19,1,.22,1) both;}
+  @keyframes logoIn{0%{opacity:0;transform:scale(1.18);filter:blur(18px) brightness(1.6);}60%{opacity:1;}100%{opacity:1;transform:none;filter:blur(0) brightness(1) drop-shadow(0 2px 2px rgba(20,30,40,.18)) drop-shadow(0 14px 22px rgba(20,30,40,.28)) drop-shadow(0 34px 48px rgba(20,30,40,.18));}}
+  @media(max-width:900px){
+    .hero-beach-inner{grid-template-columns:1fr;grid-template-areas:"logo" "copy";gap:22px;padding-top:44px;}
+    .hero-beach-logo{justify-self:start;width:150px;margin:0;}
+    .hero-beach-logo::before{inset:-22% -26%;}
+    .hero-beach-shade{background:linear-gradient(180deg,rgba(12,36,50,.1) 0%,rgba(12,36,50,.62) 34%,rgba(12,36,50,.8) 100%);}
+  }
+  @media(prefers-reduced-motion:reduce){.hero-beach-img,.hero-beach-logo img,.hero-beach-logo::before{animation:none;}}
 
   .split{grid-template-columns:1fr 1fr;}
   @media(max-width:860px){.split{grid-template-columns:1fr;}}
@@ -137,7 +156,7 @@
   <div id="nav-bar">
     <div class="nav-inner">
       <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
-        <img src="assets/logo-horizontal.png" alt="West Coast Allied Health" style="height:64px;width:auto;display:block;" />
+        <img src="assets/logo-nav.png" alt="West Coast Allied Health" style="height:68px;width:auto;display:block;" />
       </a>
       <nav class="nav-links" aria-label="Site navigation">
         <a href="#services" class="nav-link">Services</a>
@@ -167,25 +186,23 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<section style="background:#FAF6F0;">
-  <div style="max-width:1180px;margin:0 auto;padding:clamp(36px,5.5vw,72px) 22px clamp(48px,7vw,86px);">
-    <div class="hero-grid" style="display:grid;gap:clamp(34px,5vw,68px);align-items:center;">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;">
-          <span style="width:8px;height:8px;border-radius:50%;background:#D8A23A;display:block;"></span>
-          <span style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#0E5C84;">Accredited exercise physiology in Perth</span>
-        </div>
-        <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(38px,5.8vw,66px);line-height:1.06;letter-spacing:-0.015em;margin:0 0 22px;color:#14323F;text-wrap:balance;">Your Health is Our Priority</h1>
-        <p style="font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:#5C574E;margin:0 0 32px;max-width:520px;text-wrap:pretty;">At West Coast Allied Health we are committed to delivering compassionate, personalised allied health services that empower individuals to recover from injury, build strength, manage long-term health conditions, and live healthier, more active lives.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:13px;">
-          <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary" style="display:inline-flex;align-items:center;gap:9px;background:#0E5C84;color:#fff;padding:15px 26px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book now</a>
-          <a href="refer.html" class="h-cta-secondary" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#0E5C84;padding:15px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid #CDBFA6;transition:background .2s ease,border-color .2s ease;">Refer a patient</a>
-        </div>
+<section class="hero-beach">
+  <div class="hero-beach-bg" data-depth="bg"><img src="assets/hero-beach-2560.jpg" srcset="assets/hero-beach-1280.jpg 1280w, assets/hero-beach-2560.jpg 2560w" sizes="100vw" alt="" class="hero-beach-img" fetchpriority="high"></div>
+  <div class="hero-beach-shade"></div>
+  <div class="hero-beach-inner">
+    <div class="hero-beach-logo">
+      <img src="assets/logo-transparent.png" alt="West Coast Allied Health" width="900" height="860">
+    </div>
+    <div class="hero-beach-copy">
+      <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#E7B24A;display:block;"></span>
+        <span style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#F3E6CC;">Accredited exercise physiology in Perth</span>
       </div>
-      <div>
-        <div style="aspect-ratio:4/4.5;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #E6DCCD;display:flex;align-items:center;justify-content:center;">
-          <img src="assets/logo-centred.png" alt="West Coast Allied Health" style="width:64%;height:auto;display:block;" />
-        </div>
+      <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(42px,6.4vw,76px);line-height:1.04;letter-spacing:-0.015em;margin:0 0 22px;color:#fff;text-wrap:balance;text-shadow:0 2px 24px rgba(8,24,34,.35);">Your Health is Our Priority</h1>
+      <p style="font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:rgba(255,255,255,.9);margin:0 0 34px;max-width:520px;text-wrap:pretty;">At West Coast Allied Health we are committed to delivering compassionate, personalised allied health services that empower individuals to recover from injury, build strength, manage long-term health conditions, and live healthier, more active lives.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;">
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary" style="display:inline-flex;align-items:center;gap:9px;background:#0E5C84;color:#fff;padding:15px 26px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.22);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book now</a>
+        <a href="refer.html" class="h-ghost-dark" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);color:#fff;padding:15px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid rgba(255,255,255,.55);transition:background .2s ease,border-color .2s ease;">Refer a patient</a>
       </div>
     </div>
   </div>
@@ -510,6 +527,21 @@
 </div>
 
 <script src="assets/reveal.js" defer></script>
+<script>
+/* Hero depth: background drifts slower than the page on scroll */
+(function () {
+  var hero = document.querySelector('.hero-beach');
+  if (!hero || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var bg = hero.querySelector('[data-depth="bg"]'), ticking = false;
+  function render() {
+    ticking = false;
+    bg.style.transform = 'translate3d(0,' + Math.min(window.scrollY, hero.offsetHeight) * 0.3 + 'px,0)';
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(render); }
+  }, { passive: true });
+})();
+</script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
