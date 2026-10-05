@@ -37,8 +37,6 @@
   .nav-link.active{color:#0E5C84;font-weight:600;}
 
   /* Book button (desktop) */
-  .nav-book-btn{display:inline-flex;align-items:center;background:#0E5C84;color:#fff !important;padding:10px 22px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;transition:background .2s ease,transform .15s ease;white-space:nowrap;}
-  .nav-book-btn:hover{background:#0B4A6B;transform:translateY(-1px);}
 
   /* Burger button */
   .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;border:1px solid #DDD3C2;border-radius:9px;background:#FAF6F0;cursor:pointer;padding:0;transition:background .15s ease;}
@@ -55,8 +53,6 @@
   .mobile-link:hover{color:#0E5C84;background:#FAF6F0;}
   .mobile-link.active{color:#0E5C84;}
   .mobile-book-wrap{padding:16px 22px 24px;border-top:1px solid #F1EADD;}
-  .mobile-book-link{display:block;text-align:center;background:#0E5C84;color:#fff;padding:14px;border-radius:9px;font-weight:600;font-size:16px;text-decoration:none;transition:background .2s ease;}
-  .mobile-book-link:hover{background:#0B4A6B;}
 
   @media(max-width:880px){
     .nav-links{display:none;}
@@ -141,6 +137,7 @@
   a.h-topbar-phone:hover{color:#0E5C84 !important;}
   button.h-submit:hover{background:#0B4A6B !important;transform:translateY(-1px);box-shadow:0 12px 24px rgba(14,92,132,.24) !important;}
 </style>
+<link rel="stylesheet" href="assets/fx.css">
 </head>
 <body>
 <div id="top">
@@ -165,7 +162,7 @@
         <a href="refer.html" class="nav-link">Refer Patients</a>
       </nav>
       <div style="display:flex;align-items:center;gap:10px;">
-        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="nav-book-btn">Book now</a>
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="nav-book-btn btn-book bb-sm">Book now<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
         <button id="burger-btn" aria-label="Open menu" aria-expanded="false" class="nav-burger">
           <span class="burger-bar"></span>
           <span class="burger-bar"></span>
@@ -180,7 +177,7 @@
     <a href="#contact" class="mobile-link">Contact</a>
     <a href="refer.html" class="mobile-link">Refer Patients</a>
     <div class="mobile-book-wrap">
-      <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="mobile-book-link">Book now</a>
+      <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="mobile-book-link btn-book bb-block">Book now<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
     </div>
   </div>
 </header>
@@ -194,15 +191,15 @@
       <img src="assets/logo-transparent.png" alt="West Coast Allied Health" width="900" height="860">
     </div>
     <div class="hero-beach-copy">
-      <div style="display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;">
+      <div class="hero-fade" style="display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;animation-delay:.05s;">
         <span style="width:8px;height:8px;border-radius:50%;background:#E7B24A;display:block;"></span>
         <span style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#F3E6CC;">Accredited exercise physiology in Perth</span>
       </div>
-      <h1 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(42px,6.4vw,76px);line-height:1.04;letter-spacing:-0.015em;margin:0 0 22px;color:#fff;text-wrap:balance;text-shadow:0 2px 24px rgba(8,24,34,.35);">Your Health is Our Priority</h1>
-      <p style="font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:rgba(255,255,255,.9);margin:0 0 34px;max-width:520px;text-wrap:pretty;">At West Coast Allied Health we are committed to delivering compassionate, personalised allied health services that empower individuals to recover from injury, build strength, manage long-term health conditions, and live healthier, more active lives.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:13px;">
-        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary" style="display:inline-flex;align-items:center;gap:9px;background:#0E5C84;color:#fff;padding:15px 26px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.22);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book now</a>
-        <a href="refer.html" class="h-ghost-dark" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);color:#fff;padding:15px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid rgba(255,255,255,.55);transition:background .2s ease,border-color .2s ease;">Refer a patient</a>
+      <h1 data-split style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(42px,6.4vw,76px);line-height:1.04;letter-spacing:-0.015em;margin:0 0 22px;color:#fff;text-wrap:balance;text-shadow:0 2px 24px rgba(8,24,34,.35);">Your Health is Our Priority</h1>
+      <p class="hero-fade" style="animation-delay:.55s;font-size:clamp(17px,1.5vw,19px);line-height:1.65;color:rgba(255,255,255,.9);margin:0 0 34px;max-width:520px;text-wrap:pretty;">At West Coast Allied Health we are committed to delivering compassionate, personalised allied health services that empower individuals to recover from injury, build strength, manage long-term health conditions, and live healthier, more active lives.</p>
+      <div class="hero-fade" style="display:flex;flex-wrap:wrap;gap:13px;align-items:center;animation-delay:.75s;">
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="btn-book bb-lg bb-pulse"><span class="bb-shine"></span>Book now<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+        <a href="refer.html" class="h-ghost-dark" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;padding:15px 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:1px solid rgba(255,255,255,.55);transition:background .2s ease,border-color .2s ease;">Refer a patient</a>
       </div>
     </div>
   </div>
@@ -211,13 +208,13 @@
 <!-- ============ WAYS WE SEE YOU ============ -->
 <section style="background:#fff;border-top:1px solid #EFE7D9;border-bottom:1px solid #EFE7D9;">
   <div class="reveal" style="max-width:1180px;margin:0 auto;padding:clamp(34px,4.5vw,52px) 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,3vw,44px);">
-    <div class="reveal-item" style="border-top:2px solid #14323F;padding-top:16px;">
+    <div class="reveal-item draw-rule" style="border-top:2px solid #14323F;padding-top:16px;">
       <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;">In Clinic</div>
     </div>
-    <div class="reveal-item" style="border-top:2px solid #14323F;padding-top:16px;">
+    <div class="reveal-item draw-rule" style="border-top:2px solid #14323F;padding-top:16px;">
       <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;">Home Visits</div>
     </div>
-    <div class="reveal-item" style="border-top:2px solid #14323F;padding-top:16px;">
+    <div class="reveal-item draw-rule" style="border-top:2px solid #14323F;padding-top:16px;">
       <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#14323F;">Telehealth</div>
     </div>
   </div>
@@ -228,8 +225,10 @@
   <div class="reveal" style="max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,104px) 22px;">
     <div class="split" style="display:grid;gap:clamp(36px,5vw,72px);align-items:center;">
       <div>
-        <div style="aspect-ratio:5/4.2;border-radius:14px;overflow:hidden;background:repeating-linear-gradient(135deg,#ECE3D5 0 16px,#F3ECE0 16px 32px);border:1px solid #E6DCCD;display:flex;align-items:flex-end;justify-content:center;">
-          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:#8C8270;background:#FAF6F0;border:1px solid #E6DCCD;padding:7px 13px;border-radius:7px;margin-bottom:20px;">photo: the team</span>
+        <div class="about-stack">
+          <figure class="as-photo as-back" data-parallax="-30"><img src="assets/team/matthew-wood.jpg" alt="Matthew Wood, Managing Director and Exercise Physiologist" loading="lazy"></figure>
+          <figure class="as-photo as-front" data-parallax="30"><img src="assets/team/arnika-cave.jpg" alt="Arnika Cave, Exercise Physiologist" loading="lazy"></figure>
+          <a href="#team" class="as-chip"><span class="as-chip-faces"><img src="assets/team/matthew-wood.jpg" alt=""><img src="assets/team/arnika-cave.jpg" alt=""></span>Meet the team <span class="as-chip-arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
       <div>
@@ -264,19 +263,19 @@
         <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(29px,3.6vw,44px);line-height:1.12;letter-spacing:-0.01em;margin:0;color:#14323F;text-wrap:balance;">Where we can help</h2>
       </div>
       <div class="reveal">
-        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:0 0 28px;border-bottom:1px solid #EDE5D6;">
+        <div class="reveal-item svc-row" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:0 0 28px;border-bottom:1px solid #EDE5D6;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">01</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Injury Rehabilitation</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Recover with confidence through personalised exercise programs designed to reduce pain, restore movement, and help you safely return to work, sport, and everyday life. We manage all types of injuries, including recent or long-term issues, and help you understand how a focused exercise plan can improve your confidence, pain, and independence.</p></div>
         </div>
-        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
+        <div class="reveal-item svc-row" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">02</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Chronic Condition Management</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Evidence-based exercise programs tailored to help manage chronic conditions, improve your health, and enhance your quality of life through safe and sustainable movement. We work closely with you to build long-term habits that support better health and ongoing independence.</p></div>
         </div>
-        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
+        <div class="reveal-item svc-row" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0;border-bottom:1px solid #EDE5D6;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">03</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Strength &amp; Conditioning</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Build strength, improve performance, and reduce injury risk with individualised training programs designed to help you achieve your health, fitness, or sporting goals. Whether you're new to exercise or an experienced athlete, we'll create a program that challenges and supports you every step of the way.</p></div>
         </div>
-        <div class="reveal-item" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0 0;">
+        <div class="reveal-item svc-row" style="display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 0 0;">
           <span style="font-family:'Spectral',Georgia,serif;font-size:17px;color:#C0A87E;padding-top:3px;">04</span>
           <div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;margin:0 0 8px;color:#14323F;">Group Classes</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Enjoy supportive, supervised exercise sessions in a welcoming group environment, designed to improve strength, mobility, balance, and overall wellbeing for all fitness levels. Our classes are led by qualified Exercise Physiologists, ensuring every exercise is safe, effective, and tailored to your abilities.</p></div>
         </div>
@@ -312,33 +311,32 @@
       <p style="font-size:17px;line-height:1.7;color:#5C574E;margin:0;text-wrap:pretty;">Our accredited EPs bring the expertise. The reason people keep coming back is that they genuinely listen and build programs that actually fit your life.</p>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,32px);">
-      <!-- EP Card 1 -->
-      <div class="reveal-item card-lift" style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;overflow:hidden;">
-        <div style="aspect-ratio:4/3.4;background:#ECE3D5;">
-          <img src="assets/team/matthew-wood.jpg" alt="Matthew Wood, Managing Director and Exercise Physiologist" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 20%;">
+      <article class="reveal-item team-card">
+        <div class="team-photo">
+          <img src="assets/team/matthew-wood.jpg" alt="Matthew Wood, Managing Director and Exercise Physiologist" loading="lazy">
+          <span class="team-view" aria-hidden="true">View profile</span>
         </div>
-        <div style="padding:22px 24px 28px;">
-          <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;color:#14323F;margin-bottom:4px;">Matthew Wood</div>
-          <div style="font-size:13px;font-weight:600;letter-spacing:.04em;color:#0E5C84;text-transform:uppercase;margin-bottom:14px;">Managing Director/Exercise Physiologist</div>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0 0 12px;">Matt graduated as an Accredited Exercise Physiologist in 2018.</p>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0 0 12px;">He has treated a diverse range of conditions which include Musculoskeletal, Cardiovascular, Neurological, and Mental Health, along with many more. He specialises in musculoskeletal injuries, chronic pain management, and strength and conditioning.</p>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0 0 12px;">Matt's interest in the field originated from having a number of injuries throughout his life that caused many setbacks, and he understands the impact it can have on his client's physical and mental health.</p>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0;">He is an avid sports fan following both AFL and Cricket, and competes in ultra running events.</p>
+        <div style="padding:22px 24px 26px;">
+          <div class="team-name" style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:22px;color:#14323F;margin-bottom:4px;">Matthew Wood</div>
+          <div class="team-role" style="font-size:13px;font-weight:600;letter-spacing:.04em;color:#0E5C84;text-transform:uppercase;margin-bottom:14px;">Managing Director/Exercise Physiologist</div>
+          <p style="font-size:15px;line-height:1.68;color:#6B6458;margin:0;">Accredited Exercise Physiologist since 2018, specialising in musculoskeletal injuries, chronic pain management, and strength and conditioning.</p>
+          <button type="button" class="team-more" aria-haspopup="dialog">Read Matt's story <span aria-hidden="true">&rarr;</span></button>
+          <div class="team-bio" hidden><p>Matt graduated as an Accredited Exercise Physiologist in 2018.</p><p>He has treated a diverse range of conditions which include Musculoskeletal, Cardiovascular, Neurological, and Mental Health, along with many more. He specialises in musculoskeletal injuries, chronic pain management, and strength and conditioning.</p><p>Matt's interest in the field originated from having a number of injuries throughout his life that caused many setbacks, and he understands the impact it can have on his client's physical and mental health.</p><p>He is an avid sports fan following both AFL and Cricket, and competes in ultra running events.</p></div>
         </div>
-      </div>
-      <!-- EP Card 2 -->
-      <div class="reveal-item card-lift" style="background:#fff;border:1px solid #EAE0CF;border-radius:16px;overflow:hidden;">
-        <div style="aspect-ratio:4/3.4;background:#ECE3D5;">
-          <img src="assets/team/arnika-cave.jpg" alt="Arnika Cave, Exercise Physiologist" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:center 20%;">
+      </article>
+      <article class="reveal-item team-card">
+        <div class="team-photo">
+          <img src="assets/team/arnika-cave.jpg" alt="Arnika Cave, Exercise Physiologist" loading="lazy">
+          <span class="team-view" aria-hidden="true">View profile</span>
         </div>
-        <div style="padding:22px 24px 28px;">
-          <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:21px;color:#14323F;margin-bottom:4px;">Arnika Cave</div>
-          <div style="font-size:13px;font-weight:600;letter-spacing:.04em;color:#0E5C84;text-transform:uppercase;margin-bottom:14px;">Exercise Physiologist</div>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0 0 12px;">Arnika is an Accredited Exercise Physiologist who completed her Master of Clinical Exercise Physiology in 2023.</p>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0 0 12px;">She enjoys working with people of all ages and fitness levels, with her main areas of interest being women's health, neurological conditions, mental health, general fitness and preventative health. She takes a practical and individualised approach, helping people feel stronger, more confident and capable in their everyday lives.</p>
-          <p style="font-size:14.5px;line-height:1.68;color:#6B6458;margin:0;">Outside of work, Arnika enjoys training at the gym, spending time with her two dogs and staying active. Having played rugby league and touch football at a high level, she understands the importance of looking after your body and staying strong to support an active lifestyle.</p>
+        <div style="padding:22px 24px 26px;">
+          <div class="team-name" style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:22px;color:#14323F;margin-bottom:4px;">Arnika Cave</div>
+          <div class="team-role" style="font-size:13px;font-weight:600;letter-spacing:.04em;color:#0E5C84;text-transform:uppercase;margin-bottom:14px;">Exercise Physiologist</div>
+          <p style="font-size:15px;line-height:1.68;color:#6B6458;margin:0;">Accredited Exercise Physiologist with a Master of Clinical Exercise Physiology, with a focus on women's health, neurological conditions and mental health.</p>
+          <button type="button" class="team-more" aria-haspopup="dialog">Read Arnika's story <span aria-hidden="true">&rarr;</span></button>
+          <div class="team-bio" hidden><p>Arnika is an Accredited Exercise Physiologist who completed her Master of Clinical Exercise Physiology in 2023.</p><p>She enjoys working with people of all ages and fitness levels, with her main areas of interest being women's health, neurological conditions, mental health, general fitness and preventative health. She takes a practical and individualised approach, helping people feel stronger, more confident and capable in their everyday lives.</p><p>Outside of work, Arnika enjoys training at the gym, spending time with her two dogs and staying active. Having played rugby league and touch football at a high level, she understands the importance of looking after your body and staying strong to support an active lifestyle.</p></div>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -351,16 +349,16 @@
       <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(29px,3.6vw,44px);line-height:1.12;letter-spacing:-0.01em;margin:0;color:#14323F;text-wrap:balance;">Why people keep choosing West Coast Allied Health</h2>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(24px,3vw,40px);">
-      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Personalised Care</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Every exercise program is tailored to your goals, lifestyle, and current ability to ensure the best possible outcomes.</p></div>
-      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Evidence Based Treatment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our Accredited Exercise Physiologists use the latest research and proven techniques to help you move better, recover faster, and stay healthier.</p></div>
-      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Support Every Step of the Way</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We build long-term relationships, providing ongoing guidance, motivation, and accountability throughout your journey.</p></div>
-      <div class="reveal-item card-lift" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Real Results That Last</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our focus is on achieving lasting improvements in strength, mobility, confidence, and overall quality of life—not just short-term fixes.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Personalised Care</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Every exercise program is tailored to your goals, lifestyle, and current ability to ensure the best possible outcomes.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Evidence Based Treatment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our Accredited Exercise Physiologists use the latest research and proven techniques to help you move better, recover faster, and stay healthier.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Support Every Step of the Way</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We build long-term relationships, providing ongoing guidance, motivation, and accountability throughout your journey.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="border-top:2px solid #14323F;padding-top:18px;"><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;margin:0 0 8px;color:#14323F;">Real Results That Last</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Our focus is on achieving lasting improvements in strength, mobility, confidence, and overall quality of life—not just short-term fixes.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ============ REFER A PATIENT ============ -->
-<section id="refer" style="background:#0C2A3A;position:relative;overflow:hidden;">
+<section id="refer" class="spotlight" style="background:#0C2A3A;position:relative;overflow:hidden;">
   <div style="position:absolute;top:-120px;right:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(43,168,224,.18),transparent 70%);"></div>
   <div class="reveal" style="max-width:1180px;margin:0 auto;padding:clamp(54px,8vw,100px) 22px;position:relative;">
     <div class="split" style="display:grid;gap:clamp(36px,5vw,64px);align-items:center;">
@@ -393,9 +391,9 @@
       <h2 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:clamp(29px,3.6vw,44px);line-height:1.12;letter-spacing:-0.01em;margin:0;color:#14323F;text-wrap:balance;">How your visit goes</h2>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:clamp(24px,3vw,40px);">
-      <div class="reveal-item card-lift" style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step one</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Book an Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Book online, email, or have your GP refer you. We'll find a day and time that suits.</p></div>
-      <div class="reveal-item card-lift" style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step two</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Initial Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll discuss your history, goals, and assess where you're currently at.</p></div>
-      <div class="reveal-item card-lift" style="border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step three</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Ongoing Management</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll create a program that will help you best, whether it's for home or gym, and then progress as we go along.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="--rule:#C0A87E;border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step one</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Book an Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">Book online, email, or have your GP refer you. We'll find a day and time that suits.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="--rule:#C0A87E;border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step two</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Initial Appointment</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll discuss your history, goals, and assess where you're currently at.</p></div>
+      <div class="reveal-item card-lift draw-rule" style="--rule:#C0A87E;border-top:2px solid #DDD3C2;padding-top:18px;"><div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:15px;color:#C0A87E;margin-bottom:10px;">Step three</div><h3 style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:20px;margin:0 0 9px;color:#14323F;">Ongoing Management</h3><p style="font-size:15px;line-height:1.65;color:#6B6458;margin:0;">We'll create a program that will help you best, whether it's for home or gym, and then progress as we go along.</p></div>
     </div>
   </div>
 </section>
@@ -472,7 +470,7 @@
             <div style="display:flex;justify-content:space-between;gap:16px;"><span style="color:#6B6458;">Sun</span><span style="font-weight:400;color:#9A9183;">Closed</span></div>
           </div>
         </div>
-        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="h-cta-primary reveal-item" style="display:flex;justify-content:center;align-items:center;background:#0E5C84;color:#fff;padding:16px 24px;border-radius:10px;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 6px 16px rgba(14,92,132,.18);transition:background .2s ease,transform .15s ease,box-shadow .2s ease;">Book a session online</a>
+        <a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="btn-book bb-lg bb-block reveal-item">Book a session online<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
       </div>
     </div>
   </div>
@@ -526,7 +524,21 @@
 
 </div>
 
+<dialog id="team-modal" class="team-modal" aria-label="Team member profile">
+  <button type="button" class="tm-close" aria-label="Close" autofocus><svg viewBox="0 0 16 16" fill="none" stroke="#14323F" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+  <div class="tm-grid">
+    <div class="tm-photo"><img src="" alt=""></div>
+    <div class="tm-body">
+      <h2 class="tm-name"></h2>
+      <div class="tm-role"></div>
+      <div class="tm-bio"></div>
+      <div class="tm-actions"><a href="https://www.halaxy.com/book/appointment/west-coast-allied-health-yanchep/location/1312497" target="_blank" rel="noopener" class="btn-book">Book a session<span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a></div>
+    </div>
+  </div>
+</dialog>
+
 <script src="assets/reveal.js" defer></script>
+<script src="assets/fx.js" defer></script>
 <script>
 /* Hero depth: background drifts slower than the page on scroll */
 (function () {
