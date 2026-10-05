@@ -75,17 +75,18 @@
   .hero-beach-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,36,50,.86) 0%,rgba(12,36,50,.64) 36%,rgba(12,36,50,.12) 64%,rgba(12,36,50,0) 100%),linear-gradient(0deg,rgba(12,36,50,.35) 0%,rgba(12,36,50,0) 30%);}
   .hero-beach-inner{position:relative;max-width:1180px;margin:0 auto;padding:clamp(64px,9vw,128px) 22px clamp(72px,10vw,140px);display:grid;grid-template-columns:minmax(0,600px) 1fr;grid-template-areas:"copy logo";align-items:center;gap:40px;}
   .hero-beach-copy{grid-area:copy;}
-  .hero-beach-logo{grid-area:logo;justify-self:center;align-self:start;position:relative;width:clamp(220px,26vw,360px);will-change:transform;margin-top:-24px;}
-  .hero-beach-logo::before{content:'';position:absolute;inset:-18% -22%;background:radial-gradient(closest-side,rgba(255,250,242,.78),rgba(255,244,228,.4) 55%,rgba(255,240,220,0));filter:blur(8px);z-index:-1;}
-  .hero-beach-logo img{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 2px rgba(20,30,40,.18)) drop-shadow(0 14px 22px rgba(20,30,40,.28)) drop-shadow(0 34px 48px rgba(20,30,40,.18));animation:logoIn 1.4s .25s cubic-bezier(.16,.8,.24,1) both;}
-  @keyframes logoIn{from{opacity:0;transform:translateY(26px) scale(.94);}to{opacity:1;transform:none;}}
+  .hero-beach-logo{grid-area:logo;justify-self:center;align-self:center;position:relative;isolation:isolate;width:clamp(220px,23vw,320px);}
+  .hero-beach-logo::before{content:'';position:absolute;inset:-30% -32%;background:radial-gradient(closest-side,rgba(255,251,245,.96),rgba(255,249,241,.9) 40%,rgba(255,244,230,.55) 68%,rgba(255,240,222,0));filter:blur(10px);z-index:-1;animation:haloIn 2.6s .4s ease-out both;}
+  @keyframes haloIn{from{opacity:0;transform:scale(.7);}to{opacity:1;transform:none;}}
+  .hero-beach-logo img{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 2px rgba(20,30,40,.18)) drop-shadow(0 14px 22px rgba(20,30,40,.28)) drop-shadow(0 34px 48px rgba(20,30,40,.18));animation:logoIn 2.4s .6s cubic-bezier(.19,1,.22,1) both;}
+  @keyframes logoIn{0%{opacity:0;transform:scale(1.18);filter:blur(18px) brightness(1.6);}60%{opacity:1;}100%{opacity:1;transform:none;filter:blur(0) brightness(1) drop-shadow(0 2px 2px rgba(20,30,40,.18)) drop-shadow(0 14px 22px rgba(20,30,40,.28)) drop-shadow(0 34px 48px rgba(20,30,40,.18));}}
   @media(max-width:900px){
     .hero-beach-inner{grid-template-columns:1fr;grid-template-areas:"logo" "copy";gap:22px;padding-top:44px;}
-    .hero-beach-logo{justify-self:start;width:150px;margin-top:0;}
+    .hero-beach-logo{justify-self:start;width:150px;margin:0;}
     .hero-beach-logo::before{inset:-22% -26%;}
     .hero-beach-shade{background:linear-gradient(180deg,rgba(12,36,50,.1) 0%,rgba(12,36,50,.62) 34%,rgba(12,36,50,.8) 100%);}
   }
-  @media(prefers-reduced-motion:reduce){.hero-beach-img,.hero-beach-logo img{animation:none;}}
+  @media(prefers-reduced-motion:reduce){.hero-beach-img,.hero-beach-logo img,.hero-beach-logo::before{animation:none;}}
 
   .split{grid-template-columns:1fr 1fr;}
   @media(max-width:860px){.split{grid-template-columns:1fr;}}
@@ -189,7 +190,7 @@
   <div class="hero-beach-bg" data-depth="bg"><img src="assets/hero-beach-2560.jpg" srcset="assets/hero-beach-1280.jpg 1280w, assets/hero-beach-2560.jpg 2560w" sizes="100vw" alt="" class="hero-beach-img" fetchpriority="high"></div>
   <div class="hero-beach-shade"></div>
   <div class="hero-beach-inner">
-    <div class="hero-beach-logo" data-depth="logo">
+    <div class="hero-beach-logo">
       <img src="assets/logo-transparent.png" alt="West Coast Allied Health" width="900" height="860">
     </div>
     <div class="hero-beach-copy">
@@ -527,29 +528,18 @@
 
 <script src="assets/reveal.js" defer></script>
 <script>
-/* Hero depth: background and logo drift at different rates on scroll and pointer move */
+/* Hero depth: background drifts slower than the page on scroll */
 (function () {
   var hero = document.querySelector('.hero-beach');
   if (!hero || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
-  var bg = hero.querySelector('[data-depth="bg"]'), logo = hero.querySelector('[data-depth="logo"]');
-  var mx = 0, my = 0, tx = 0, ty = 0, ticking = false;
+  var bg = hero.querySelector('[data-depth="bg"]'), ticking = false;
   function render() {
     ticking = false;
-    var sy = Math.min(window.scrollY, hero.offsetHeight);
-    tx += (mx - tx) * 0.08; ty += (my - ty) * 0.08;
-    bg.style.transform = 'translate3d(' + (tx * -10) + 'px,' + (sy * 0.32 + ty * -8) + 'px,0)';
-    logo.style.transform = 'translate3d(' + (tx * 16) + 'px,' + (sy * -0.12 + ty * 12) + 'px,0)';
-    if (Math.abs(mx - tx) > 0.002 || Math.abs(my - ty) > 0.002) request();
+    bg.style.transform = 'translate3d(0,' + Math.min(window.scrollY, hero.offsetHeight) * 0.3 + 'px,0)';
   }
-  function request() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
-  window.addEventListener('scroll', request, { passive: true });
-  if (window.matchMedia('(hover: hover)').matches) {
-    hero.addEventListener('pointermove', function (e) {
-      var r = hero.getBoundingClientRect();
-      mx = (e.clientX - r.left) / r.width - 0.5; my = (e.clientY - r.top) / r.height - 0.5; request();
-    });
-    hero.addEventListener('pointerleave', function () { mx = 0; my = 0; request(); });
-  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(render); }
+  }, { passive: true });
 })();
 </script>
 <script>
